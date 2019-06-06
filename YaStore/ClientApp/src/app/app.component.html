@@ -1,6 +1,5 @@
 <div>
   <button routerLink="home">Logo</button>
-  <input placeholder="Search" />
   <button *ngIf="loggedIn; else notLogged" routerLink="{{navigate}}">{{userName}}</button>
   <button *ngIf="loggedIn && !isAdmin" routerLink="cart">cart</button>
 </div>

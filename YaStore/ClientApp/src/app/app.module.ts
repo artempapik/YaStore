@@ -1,6 +1,5 @@
 //TOCHANGE
 //select category when adding new category || product through *ngFor instead of hardcoding values
-//use modern many-to-many relationship
 
 //QUESTIONS
 //choose right life cycle to update homecomponent after adding new category
@@ -10,15 +9,14 @@
 //enums in TS
 
 //TODO
-//delete category
+//so, maybe, for deleting category & product i should use modern many-to-many relationship
 //filter on main page
-//change, remove product
 //statistics
-//search
 //carousel
 //store pictures in some way
-//bootstrap, angular material, pop-ups
+//bootstrap
 //angular validation
+//angular material, pop-ups
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
