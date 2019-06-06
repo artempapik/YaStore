@@ -1,10 +1,10 @@
 <div>
-  <button routerLink="home">Logo</button>
+  <button class="btn btn-info" routerLink="home">Logo</button>
   <button *ngIf="loggedIn; else notLogged" routerLink="{{navigate}}">{{userName}}</button>
   <button *ngIf="loggedIn && !isAdmin" routerLink="cart">cart</button>
 </div>
 <router-outlet></router-outlet>
 
 <ng-template #notLogged>
-  <button routerLink="signing">Sign in</button>
+  <button class="btn btn-primary" routerLink="signing">Sign in</button>
 </ng-template>

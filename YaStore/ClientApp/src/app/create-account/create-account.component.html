@@ -1,14 +1,26 @@
 <div>
-  <div>
-    <input placeholder="Login" [(ngModel)]="user.login" />
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Login</span>
+    </div>
+    <input class="form-control" [(ngModel)]="user.login" />
   </div>
-  <div>
-    <input placeholder="Password" [(ngModel)]="user.password" />
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Password</span>
+    </div>
+    <input class="form-control" [(ngModel)]="user.password" />
   </div>
-  <div>
-    <input placeholder="Re-enter password" [(ngModel)]="password" />
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Re-enter password</span>
+    </div>
+    <input class="form-control" [(ngModel)]="password" />
   </div>
+
   <div>
-    <button (click)="addUser()">Create Account</button>
+    <button class="btn btn-primary" (click)="addUser()">Create Account</button>
   </div>
 </div>
