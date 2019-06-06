@@ -4,9 +4,15 @@
 <div>
   {{product?.description}}
 </div>
-<button [attr.disabled]="clicked" (click)="addToCart(product.id)"
+<button [disabled]="clicked || !product.availability" (click)="addToCart(product.id)"
         *ngIf="!shareDataService.isAdmin &&
         shareDataService.userName !== undefined &&
         shareDataService.userName !== null">
   Add to cart
+  <div *ngIf="product.availability" style="color: green;">
+    Available
+  </div>
+  <div *ngIf="!product.availability" style="color: red;">
+    Not available
+  </div>
 </button>

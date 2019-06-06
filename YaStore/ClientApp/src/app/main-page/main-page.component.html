@@ -13,7 +13,7 @@
     Products from Category
   </h1>
   <div *ngFor="let product of products">
-    <button routerLink="detailed-info" (click)="viewProduct(product?.id)">
+    <button routerLink="detailed-info" (click)="viewProduct(product.id)">
       {{product.id}} {{product.name}}
     </button>
   </div>

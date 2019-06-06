@@ -9,10 +9,10 @@
     Music
   </button>
   <div *ngFor="let category of categories">
-    <!--<button routerLink="main-page" (click)="productsFromCategory(category?.type, category?.id)" *ngIf="category.type === 0">
+    <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 0">
     </button>-->
     <div *ngIf="category.type === 0">
-      {{category?.id}} {{category?.name}}
+      {{category.id}} {{category.name}}
     </div>
   </div>
 </div>
@@ -21,10 +21,10 @@
     Videos
   </button>
   <div *ngFor="let category of categories">
-    <!--<button routerLink="main-page" (click)="productsFromCategory(category?.type, category?.id)" *ngIf="category.type === 1">
+    <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 1">
     </button>-->
     <div *ngIf="category.type === 1">
-      {{category?.id}} {{category?.name}}
+      {{category.id}} {{category.name}}
     </div>
   </div>
 </div>

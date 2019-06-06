@@ -16,7 +16,7 @@ export class DetailedInfoComponent implements OnInit {
   product: Product = new Product();
   purchases: Purchase[];
   users: User[];
-  clicked: boolean;
+  clicked: boolean = false;
 
   constructor(
     private userDataService: UserDataService,

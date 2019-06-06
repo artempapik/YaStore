@@ -7,10 +7,10 @@
 //get different methods with the same signature
 //errors with 500 code while trying to perform get request (and 200 also)
 //why red classes in VS in TS
+//enums in TS
 
 //TODO
 //change, delete category
-//some tricks with product availability
 //filter on main page
 //remove product
 //statistics
