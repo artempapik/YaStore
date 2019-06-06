@@ -1,0 +1,8 @@
+<div *ngFor="let product of products; let i = index">
+  <div>
+    {{product?.id}} {{product?.name}} {{product?.price}}
+  </div>
+  <div>
+    {{product?.description}} <button (click)="buy(i, product.id)">Buy</button>
+  </div>
+</div>

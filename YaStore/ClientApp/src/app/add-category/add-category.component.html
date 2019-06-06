@@ -1,0 +1,15 @@
+<div>
+  <div>
+    <input placeholder="Name" [(ngModel)]="category.name" />
+  </div>
+  <div>
+    <label>Select Category Type</label>
+    <select [(ngModel)]="category.type">
+      <option value="Music">Music</option>
+      <option value="Video">Video</option>
+    </select>
+  </div>
+  <div>
+    <button (click)="addCategory()">Add Category</button>
+  </div>
+</div>

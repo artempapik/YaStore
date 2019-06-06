@@ -1,0 +1,12 @@
+<div>
+  <div>
+    <input placeholder="Login" [(ngModel)]="user.login" />
+  </div>
+  <div>
+    <input placeholder="Password" [(ngModel)]="user.password" />
+  </div>
+  <div>
+    <button routerLink="create-account">Create Account</button>
+    <button (click)="login()">Log in</button>
+  </div>
+</div>

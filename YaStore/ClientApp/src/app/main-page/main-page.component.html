@@ -1,0 +1,20 @@
+<div class="float-left">
+  <h1>
+    Categories
+  </h1>
+  <div *ngFor="let category of categories">
+    <button>
+      {{category?.id}} {{category?.name}}
+    </button>
+  </div>
+</div>
+<div class="float-right">
+  <h1>
+    Products from Category
+  </h1>
+  <div *ngFor="let product of products">
+    <button routerLink="detailed-info" (click)="viewProduct(product?.id)">
+      {{product?.id}} {{product?.name}}
+    </button>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div>
+  {{product?.name}} {{product?.price}}
+</div>
+<div>
+  {{product?.description}}
+</div>
+<button [attr.disabled]="clicked" (click)="addToCart(product.id)"
+        *ngIf="!shareDataService.isAdmin &&
+        shareDataService.userName !== undefined &&
+        shareDataService.userName !== null">
+  Add to cart
+</button>

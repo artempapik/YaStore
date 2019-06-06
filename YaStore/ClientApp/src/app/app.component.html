@@ -1,0 +1,11 @@
+<div>
+  <button routerLink="home">Logo</button>
+  <input placeholder="Search" />
+  <button *ngIf="loggedIn; else notLogged" routerLink="{{navigate}}">{{userName}}</button>
+  <button *ngIf="loggedIn && !isAdmin" routerLink="cart">cart</button>
+</div>
+<router-outlet></router-outlet>
+
+<ng-template #notLogged>
+  <button routerLink="signing">Sign in</button>
+</ng-template>

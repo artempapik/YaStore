@@ -1,0 +1,30 @@
+<div class="center">
+  Carousel with products
+</div>
+<br />
+<br />
+<br />
+<div class="float-left">
+  <button routerLink="main-page" (click)="productsFromCategory(0)">
+    Music
+  </button>
+  <div *ngFor="let category of categories">
+    <!--<button routerLink="main-page" (click)="productsFromCategory(category?.type, category?.id)" *ngIf="category.type === 0">
+    </button>-->
+    <div *ngIf="category.type === 0">
+      {{category?.id}} {{category?.name}}
+    </div>
+  </div>
+</div>
+<div class="float-right">
+  <button routerLink="main-page" (click)="productsFromCategory(1)">
+    Videos
+  </button>
+  <div *ngFor="let category of categories">
+    <!--<button routerLink="main-page" (click)="productsFromCategory(category?.type, category?.id)" *ngIf="category.type === 1">
+    </button>-->
+    <div *ngIf="category.type === 1">
+      {{category?.id}} {{category?.name}}
+    </div>
+  </div>
+</div>

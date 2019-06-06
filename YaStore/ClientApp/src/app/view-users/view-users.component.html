@@ -1,0 +1,8 @@
+<div *ngFor="let user of users">
+  <div *ngIf="user.role === 0">
+    id: {{user.id}} <br />
+    login: {{user.login}} <br />
+    password: {{user.password}}
+  </div>
+  <br />
+</div>
