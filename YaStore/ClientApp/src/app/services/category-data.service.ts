@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Category } from './category';
 
 @Injectable()
@@ -21,7 +21,7 @@ export class CategoryDataService {
   }
 
   updateCategory(category: Category) {
-    return this.http.put(`${this.url}/${category.id}`, category);
+    return this.http.put(this.url, category);
   }
 
   deleteCategory(id: number) {

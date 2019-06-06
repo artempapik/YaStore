@@ -16,6 +16,6 @@
 </div>
 <div *ngFor="let category of categories">
   {{category.id}} {{category.name}}
-  <button (click)="changeCategory(category.id)"><b>Change</b></button>
+  <button routerLink="change-category" (click)="changeCategory(category.id)"><b>Change</b></button>
   <button (click)="deleteCategory(category.id)"><b>Delete</b></button>
 </div>

@@ -51,7 +51,7 @@ export class ChangePasswordComponent implements OnInit {
         this.user.id = user.id;
         this.userDataService
           .updateUser(this.user)
-          .subscribe(_ => { });
+          .subscribe();
 
         alert(`succesfully changed`);
         this.router.navigate(['']);

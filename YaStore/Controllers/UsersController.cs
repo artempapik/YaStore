@@ -64,11 +64,12 @@ namespace YaStore.Controllers
 					{
 						u.Login = user.Login;
 						u.Password = user.Password;
+						db.SaveChanges();
+						return Ok(user);
 					}
 				}
-				db.SaveChanges();
-				return Ok(user);
 			}
+			return default;
 		}
 	}
 }

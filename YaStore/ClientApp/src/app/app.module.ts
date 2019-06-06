@@ -17,7 +17,7 @@
 //search
 //carousel
 //store pictures in some way
-//bootstrap, angular material
+//bootstrap, angular material, pop-ups
 //angular validation
 
 import { BrowserModule } from '@angular/platform-browser';
@@ -46,6 +46,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { DetailedInfoComponent } from './detailed-info/detailed-info.component';
 import { CartDataService } from './services/cart-data.service';
 import { ViewUsersComponent } from './view-users/view-users.component';
+import { ChangeCategoryComponent } from './change-category/change-category.component';
 
 @NgModule({
   imports: [
@@ -68,6 +69,7 @@ import { ViewUsersComponent } from './view-users/view-users.component';
       { path: 'signing/admin-page/view-categories', component: ViewCategoriesComponent },
       { path: 'signing/admin-page/view-products', component: ViewProductsComponent },
       { path: 'signing/admin-page/view-users', component: ViewUsersComponent },
+      { path: 'signing/admin-page/view-categories/change-category', component: ChangeCategoryComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],
@@ -87,6 +89,7 @@ import { ViewUsersComponent } from './view-users/view-users.component';
     ViewCategoriesComponent,
     ViewProductsComponent,
     ViewUsersComponent,
+    ChangeCategoryComponent,
     NotFoundComponent,
   ],
   bootstrap: [AppComponent],

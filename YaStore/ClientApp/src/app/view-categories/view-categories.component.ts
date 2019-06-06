@@ -1,4 +1,5 @@
 import { CategoryDataService } from '../services/category-data.service';
+import { ShareDataService } from '../services/share-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../services/category';
 
@@ -14,6 +15,7 @@ export class ViewCategoriesComponent implements OnInit {
 
   constructor(
     private categoryDataService: CategoryDataService,
+    private shareDataService: ShareDataService
   ) { }
 
   ngOnInit() {
@@ -53,10 +55,12 @@ export class ViewCategoriesComponent implements OnInit {
   }
 
   changeCategory(categoryId: number) {
-    alert(`changing... ${categoryId}`);
+    this.shareDataService.categoryId = categoryId;
   }
 
   deleteCategory(categoryId: number) {
-    alert(`deleting... ${categoryId}`);
+    this.categoryDataService
+      .deleteCategory(categoryId)
+      .subscribe();
   }
 }

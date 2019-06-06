@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\change-category\change-category.component.ts" />
     <None Remove="ClientApp\src\app\view-categories\view-categories.component.ts" />
     <None Remove="ClientApp\src\app\admin-page\admin-page.component.ts" />
     <None Remove="ClientApp\src\app\cart\cart.component.ts" />
@@ -52,6 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\change-category\change-category.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\view-categories\view-categories.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\view-products\view-products.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\admin-page\admin-page.component.ts" />

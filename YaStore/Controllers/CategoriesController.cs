@@ -41,9 +41,21 @@ namespace YaStore.Controllers
 			}
 		}
 
-		[HttpPut("{id}")]
-		public IActionResult Put(int id, [FromBody]Category category)
+		[HttpPut]
+		public IActionResult Put([FromBody]Category category)
 		{
+			using (var db = new ApplicationContext())
+			{
+				foreach (var c in db.Categories.ToList())
+				{
+					if (c.Id == category.Id)
+					{
+						c.Name = category.Name;
+						db.SaveChanges();
+						return Ok(category);
+					}
+				}
+			}
 			return default;
 		}
 
