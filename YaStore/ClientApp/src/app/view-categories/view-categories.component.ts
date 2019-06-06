@@ -1,17 +1,30 @@
 import { CategoryDataService } from '../services/category-data.service';
+import { Component, OnInit } from '@angular/core';
 import { Category } from '../services/category';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'add-category',
-  templateUrl: './add-category.component.html'
+  selector: 'view-categories',
+  templateUrl: './view-categories.component.html'
 })
 
-export class AddCategoryComponent {
+export class ViewCategoriesComponent implements OnInit {
+  categories: Category[];
   category: Category = new Category();
+  showAdd: boolean = false;
 
-  constructor(private dataService: CategoryDataService, private router: Router) { }
+  constructor(
+    private categoryDataService: CategoryDataService,
+  ) { }
+
+  ngOnInit() {
+    this.categoryDataService
+      .getCategories()
+      .subscribe((data: Category[]) => this.categories = data);
+  }
+
+  showAddCategory() {
+    this.showAdd = !this.showAdd;
+  }
 
   addCategory() {
   /* validation */
@@ -33,9 +46,9 @@ export class AddCategoryComponent {
     }
   /* */
 
-    this.dataService
+    this.categoryDataService
       .createCategory(this.category)
       .subscribe();
-    this.router.navigate(['']);
+    alert(`added`);
   }
 }

@@ -1,4 +1,5 @@
-<div>
+<button (click)="showAddCategory()">Add Category</button>
+<div *ngIf="showAdd">
   <div>
     <input placeholder="Name" [(ngModel)]="category.name" />
   </div>
@@ -10,6 +11,11 @@
     </select>
   </div>
   <div>
-    <button (click)="addCategory()">Add Category</button>
+    <button (click)="addCategory()"><b>Add</b></button>
   </div>
+</div>
+<div *ngFor="let category of categories">
+  {{category.id}} {{category.name}}
+  <button><b>Change</b></button>
+  <button><b>Delete</b></button>
 </div>

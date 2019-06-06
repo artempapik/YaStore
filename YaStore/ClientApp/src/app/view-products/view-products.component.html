@@ -1,0 +1,37 @@
+<button (click)="showAddProduct()">Add Product</button>
+<div *ngIf="showAdd">
+  <div>
+    <div>
+      <input placeholder="Price" [(ngModel)]="product.price" />
+    </div>
+    <div>
+      <input placeholder="Name" [(ngModel)]="product.name" />
+    </div>
+    <div>
+      <input placeholder="Description" [(ngModel)]="product.description" />
+    </div>
+    <div>
+      Available?
+      <input type="radio" value="true" [(ngModel)]="product.availability" /> Yes
+      <input type="radio" value="false" [(ngModel)]="product.availability" /> No
+    </div>
+    <div>
+      <label>Select Category</label>
+      <select [(ngModel)]="type" (change)="changeCategory()">
+        <option value="Music">Music</option>
+        <option value="Video">Video</option>
+      </select>
+    </div>
+    <select multiple [(ngModel)]="selectedCategories" (change)="categoriesSelected()">
+      <option *ngFor="let category of categories">{{category.name}}</option>
+    </select>
+    <div>
+      <button (click)="addProduct()"><b>Add</b></button>
+    </div>
+  </div>
+</div>
+<div *ngFor="let product of products">
+  {{product.id}} {{product.name}}
+  <button><b>Change</b></button>
+  <button><b>Delete</b></button>
+</div>

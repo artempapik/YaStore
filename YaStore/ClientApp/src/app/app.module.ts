@@ -24,8 +24,6 @@
 //today
 //new category adding
 //delete products from cart && purchases
-//hello world
-//axaxa
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -40,8 +38,8 @@ import { CategoryDataService } from './services/category-data.service';
 import { UserDataService } from './services/user-data.service';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
-import { AddCategoryComponent } from './add-category/add-category.component';
-import { AddProductComponent } from './add-product/add-product.component';
+import { ViewCategoriesComponent } from './view-categories/view-categories.component';
+import { ViewProductsComponent } from './view-products/view-products.component';
 import { ShareDataService } from './services/share-data.service';
 import { UserActionsPageComponent } from './user-actions-page/user-actions-page.component';
 import { CartComponent } from './cart/cart.component';
@@ -72,8 +70,8 @@ import { ViewUsersComponent } from './view-users/view-users.component';
       { path: 'user-actions-page/change-password', component: ChangePasswordComponent },
       { path: 'user-actions-page/view-purchases', component: ViewPurchasesComponent },
       { path: 'home/main-page/detailed-info', component: DetailedInfoComponent },
-      { path: 'signing/admin-page/add-category', component: AddCategoryComponent },
-      { path: 'signing/admin-page/add-product', component: AddProductComponent },
+      { path: 'signing/admin-page/view-categories', component: ViewCategoriesComponent },
+      { path: 'signing/admin-page/view-products', component: ViewProductsComponent },
       { path: 'signing/admin-page/view-users', component: ViewUsersComponent },
       { path: '**', component: NotFoundComponent }
     ])
@@ -91,8 +89,8 @@ import { ViewUsersComponent } from './view-users/view-users.component';
     ChangePasswordComponent,
     ViewPurchasesComponent,
     DetailedInfoComponent,
-    AddCategoryComponent,
-    AddProductComponent,
+    ViewCategoriesComponent,
+    ViewProductsComponent,
     ViewUsersComponent,
     NotFoundComponent,
   ],

@@ -1,26 +1,37 @@
-import { Component } from '@angular/core';
-import { Product } from '../services/product';
-import { ProductDataService } from '../services/product-data.service';
-import { Router } from '@angular/router';
 import { CategoryDataService } from '../services/category-data.service';
+import { ProductDataService } from '../services/product-data.service';
+import { Component, OnInit } from '@angular/core';
 import { Category } from '../services/category';
+import { Product } from '../services/product';
 
 @Component({
-  selector: 'add-product',
-  templateUrl: './add-product.component.html'
+  selector: 'view-products',
+  templateUrl: './view-products.component.html'
 })
 
-export class AddProductComponent {
+export class ViewProductsComponent implements OnInit {
+  products: Product[];
   product: Product = new Product();
   type: CategoryType;
   categories: Category[];
   result: Category[];
   selectedCategories: string[];
+  showAdd: boolean = false;
 
   constructor(
     private categoryDataService: CategoryDataService,
-    private productDataService: ProductDataService,
-    private router: Router) {}
+    private productDataService: ProductDataService
+  ) { }
+
+  ngOnInit() {
+    this.productDataService
+      .getProducts()
+      .subscribe((data: Product[]) => this.products = data);
+  }
+
+  showAddProduct() {
+    this.showAdd = !this.showAdd;
+  }
 
   changeCategory() {
     this.categoryDataService
@@ -89,6 +100,6 @@ export class AddProductComponent {
     this.productDataService
       .createProduct(this.product, ids)
       .subscribe();
-    this.router.navigate(['']);
+    alert(`added`);
   }
 }

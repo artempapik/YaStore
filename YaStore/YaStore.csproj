@@ -25,8 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\src\app\add-category\add-category.component.ts" />
-    <None Remove="ClientApp\src\app\add-product\add-product.component.ts" />
+    <None Remove="ClientApp\src\app\view-categories\view-categories.component.ts" />
     <None Remove="ClientApp\src\app\admin-page\admin-page.component.ts" />
     <None Remove="ClientApp\src\app\cart\cart.component.ts" />
     <None Remove="ClientApp\src\app\change-name\change-name.component.ts" />
@@ -47,13 +46,14 @@
     <None Remove="ClientApp\src\app\user-actions-page\user-actions-page.component.ts" />
     <None Remove="ClientApp\src\app\user-data.service.ts" />
     <None Remove="ClientApp\src\app\user.ts" />
+    <None Remove="ClientApp\src\app\view-products\view-products.component.ts" />
     <None Remove="ClientApp\src\app\view-purchases\view-purchases.component.ts" />
     <None Remove="ClientApp\src\app\view-users\view-users.component.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\add-category\add-category.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\add-product\add-product.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\view-categories\view-categories.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\view-products\view-products.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\admin-page\admin-page.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cart\cart.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\change-name\change-name.component.ts" />

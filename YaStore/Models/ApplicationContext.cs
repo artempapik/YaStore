@@ -15,7 +15,7 @@ namespace YaStore.Models
 		public DbSet<Purchase> Purchases { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => 
-			optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=testdb;Trusted_Connection=True;");
+			optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=testdbb;Trusted_Connection=True;");
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
