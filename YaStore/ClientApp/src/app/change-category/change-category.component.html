@@ -1,6 +1,10 @@
-<div>
-  <input placeholder="Name" [(ngModel)]="category.name" />
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Name</span>
+  </div>
+  <input class="form-control" [(ngModel)]="category.name" />
 </div>
+
 <div>
-  <button (click)="changeCategory()"><b>Change</b></button>
+  <button class="btn btn-primary" (click)="changeCategory()">Change</button>
 </div>
