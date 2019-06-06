@@ -25,7 +25,7 @@ namespace YaStore.Controllers
 						{
 							db.Purchases.Remove(purchases[i]);
 							db.SaveChanges();
-							return Ok();
+							return Ok(purchases[i]);
 						}
 					}
 				}
