@@ -32,6 +32,6 @@
 </div>
 <div *ngFor="let product of products">
   {{product.id}} {{product.name}}
-  <button><b>Change</b></button>
-  <button><b>Delete</b></button>
+  <button routerLink="change-product" (click)="changeProduct(product.id)"><b>Change</b></button>
+  <button (click)="deleteProduct(product.id)"><b>Delete</b></button>
 </div>

@@ -1,0 +1,19 @@
+<div>
+  <div>
+    <input placeholder="Price" [(ngModel)]="product.price" />
+  </div>
+  <div>
+    <input placeholder="Name" [(ngModel)]="product.name" />
+  </div>
+  <div>
+    <input placeholder="Description" [(ngModel)]="product.description" />
+  </div>
+  <div>
+    Available?
+    <input type="radio" value="true" [(ngModel)]="product.availability" /> Yes
+    <input type="radio" value="false" [(ngModel)]="product.availability" /> No
+  </div>
+  <div>
+    <button (click)="changeProduct()"><b>Change</b></button>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { ProductDataService } from '../services/product-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../services/category';
 import { Product } from '../services/product';
+import { ShareDataService } from '../services/share-data.service';
 
 @Component({
   selector: 'view-products',
@@ -20,7 +21,8 @@ export class ViewProductsComponent implements OnInit {
 
   constructor(
     private categoryDataService: CategoryDataService,
-    private productDataService: ProductDataService
+    private productDataService: ProductDataService,
+    private shareDataService: ShareDataService
   ) { }
 
   ngOnInit() {
@@ -101,5 +103,15 @@ export class ViewProductsComponent implements OnInit {
       .createProduct(this.product, ids)
       .subscribe();
     alert(`added`);
+  }
+
+  changeProduct(productId: number) {
+    this.shareDataService.productId = productId;
+  }
+
+  deleteCategory(productId: number) {
+    this.productDataService
+      .deleteProduct(productId)
+      .subscribe();
   }
 }

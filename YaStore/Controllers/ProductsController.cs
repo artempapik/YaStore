@@ -11,14 +11,35 @@ namespace YaStore.Controllers
 	{
 		public ProductsController() { }
 
+		[HttpPut]
+		public IActionResult Put([FromBody]Product product)
+		{
+			using (var db = new ApplicationContext())
+			{
+				foreach (var p in db.Products.ToList())
+				{
+					if (p.Id == product.Id)
+					{
+						p.Price = product.Price;
+						p.Name = product.Name;
+						p.Description = product.Description;
+						p.Availability = product.Availability;
+						db.SaveChanges();
+						return Ok(product);
+					}
+				}
+			}
+			return default;
+		}
+
 		//[HttpGet("{id}")]
 		//public IEnumerable<Product> Get(int id)
 		//{
 		//	using (var db = new ApplicationContext())
 		//	{
 		//		var categoryProducts = db.Categories
-		//			.Include(cp => cp.CategoryProducts)
-		//			.SelectMany(cp => cp.CategoryProducts);
+		//			.Include(n => n.CategoryProducts)
+		//			.SelectMany(n => n.CategoryProducts);
 
 		//		var products = from category in db.Categories
 		//					 where category.Id == id
@@ -36,8 +57,8 @@ namespace YaStore.Controllers
 			using (var db = new ApplicationContext())
 			{
 				var categoryProducts = db.Categories
-					.Include(cp => cp.CategoryProducts)
-					.SelectMany(cp => cp.CategoryProducts);
+					.Include(n => n.CategoryProducts)
+					.SelectMany(n => n.CategoryProducts);
 
 				var products = from category in db.Categories
 							   where (int)category.Type == type
@@ -90,12 +111,6 @@ namespace YaStore.Controllers
 				db.SaveChanges();
 				return Ok(product);
 			}
-		}
-
-		[HttpPut("{id}")]
-		public IActionResult Put(int id, [FromBody]Category category)
-		{
-			return default;
 		}
 
 		[HttpDelete("{id}")]

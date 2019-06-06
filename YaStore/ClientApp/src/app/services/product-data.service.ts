@@ -30,7 +30,7 @@ export class ProductDataService {
   }
 
   updateProduct(product: Product) {
-    return this.http.put(`${this.url}/${product.id}`, product);
+    return this.http.put(this.url, product);
   }
 
   deleteProduct(id: number) {

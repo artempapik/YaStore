@@ -10,9 +10,9 @@
 //enums in TS
 
 //TODO
-//change, delete category
+//delete category
 //filter on main page
-//remove product
+//change, remove product
 //statistics
 //search
 //carousel
@@ -47,6 +47,7 @@ import { DetailedInfoComponent } from './detailed-info/detailed-info.component';
 import { CartDataService } from './services/cart-data.service';
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { ChangeCategoryComponent } from './change-category/change-category.component';
+import { ChangeProductComponent } from './change-product/change-product.component';
 
 @NgModule({
   imports: [
@@ -70,6 +71,7 @@ import { ChangeCategoryComponent } from './change-category/change-category.compo
       { path: 'signing/admin-page/view-products', component: ViewProductsComponent },
       { path: 'signing/admin-page/view-users', component: ViewUsersComponent },
       { path: 'signing/admin-page/view-categories/change-category', component: ChangeCategoryComponent },
+      { path: 'signing/admin-page/view-products/change-product', component: ChangeProductComponent },
       { path: '**', component: NotFoundComponent }
     ])
   ],
@@ -90,6 +92,7 @@ import { ChangeCategoryComponent } from './change-category/change-category.compo
     ViewProductsComponent,
     ViewUsersComponent,
     ChangeCategoryComponent,
+    ChangeProductComponent,
     NotFoundComponent,
   ],
   bootstrap: [AppComponent],

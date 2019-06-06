@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using YaStore.Models;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace YaStore.Controllers
 {
@@ -62,7 +63,71 @@ namespace YaStore.Controllers
 		[HttpDelete("{id}")]
 		public IActionResult Delete(int id)
 		{
-			return default;
+			//here i should delete both category and products that depend on it
+			//BUT if product has more than 1 category, I shouldn't delete it
+
+			using (var db = new ApplicationContext())
+			{
+				var categoryProducts = db.Categories
+					.Include(n => n.CategoryProducts)
+					.SelectMany(n => n.CategoryProducts);
+
+				//var categories = db.Categories
+				//	.Where(n => n.Id == id);
+
+				//foreach (var category in categories)
+				//{
+				//	var n = category.CategoryProducts.Count;
+				//}
+
+				//should i work with 'categoryProduct' list? maybe
+
+				var productsWhichShouldNotBeDeleted = new List<Product>();
+				int counter = 0;
+
+				foreach (var product in db.Products.ToList())
+				{
+					foreach (var categoryProduct in categoryProducts.ToList())
+					{
+						if (product.Id == categoryProduct.ProductId)
+						{
+							counter++;
+						}
+					}
+
+					if (counter > 1)
+					{
+						productsWhichShouldNotBeDeleted.Add(product);
+					}
+
+					counter = 0;
+				}
+
+				//то есть я не должен удалять эти продукты из дибисета продуктов
+				//но должен подчистить инфу в таблице CategoryProduct
+
+				var categoryProductsToDelete = from category in db.Categories
+							   where category.Id == id
+							   join categoryProduct in categoryProducts on category.Id equals categoryProduct.CategoryId
+							   select categoryProduct;
+							   //join product in db.Products on categoryProduct.ProductId equals product.Id
+							   //select product;
+
+				foreach (var n in categoryProductsToDelete)
+				{
+					//something like these...
+					//categoryProducts.ToList().Remove(n);
+				}
+
+				//foreach (var product in products)
+				//{
+				//	//db.Products.Remove(product);
+				//	//db.SaveChanges();
+				//}
+
+				//return Ok(products);
+				return default;
+			}
 		}
 	}
 }
