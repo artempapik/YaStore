@@ -26,11 +26,11 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\change-category\change-category.component.ts" />
+    <None Remove="ClientApp\src\app\change-login\change-login.component.ts" />
     <None Remove="ClientApp\src\app\change-product\change-product.component.ts" />
     <None Remove="ClientApp\src\app\view-categories\view-categories.component.ts" />
     <None Remove="ClientApp\src\app\admin-page\admin-page.component.ts" />
     <None Remove="ClientApp\src\app\cart\cart.component.ts" />
-    <None Remove="ClientApp\src\app\change-name\change-name.component.ts" />
     <None Remove="ClientApp\src\app\change-password\change-password.component.ts" />
     <None Remove="ClientApp\src\app\create-account\create-account.component.ts" />
     <None Remove="ClientApp\src\app\detailed-info\detailed-info.component.ts" />
@@ -60,7 +60,7 @@
     <TypeScriptCompile Include="ClientApp\src\app\view-products\view-products.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\admin-page\admin-page.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\cart\cart.component.ts" />
-    <TypeScriptCompile Include="ClientApp\src\app\change-name\change-name.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\change-login\change-login.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\change-password\change-password.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\create-account\create-account.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\detailed-info\detailed-info.component.ts" />

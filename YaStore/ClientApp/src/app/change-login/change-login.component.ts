@@ -5,11 +5,11 @@ import { ShareDataService } from '../services/share-data.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'change-name',
-  templateUrl: './change-name.component.html'
+  selector: 'change-login',
+  templateUrl: './change-login.component.html'
 })
 
-export class ChangeNameComponent implements OnInit {
+export class ChangeLoginComponent implements OnInit {
   password: string;
   user: User = new User();
   users: User[];
@@ -26,7 +26,7 @@ export class ChangeNameComponent implements OnInit {
       .subscribe((data: User[]) => this.users = data);
   }
 
-  changeName() {
+  changeLogin() {
     if (this.user.login === this.shareDataService.userName) {
       alert(`your new name the same as old`);
       return;

@@ -9,6 +9,7 @@
 //enums in TS
 
 //TODO
+//checkbox for availability
 //so, maybe, for deleting category & product i should use modern many-to-many relationship
 //filter on main page
 //statistics
@@ -16,7 +17,7 @@
 //store pictures in some way
 //bootstrap
 //angular validation
-//angular material, pop-ups
+//angular material
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -36,7 +37,7 @@ import { ViewProductsComponent } from './view-products/view-products.component';
 import { ShareDataService } from './services/share-data.service';
 import { UserActionsPageComponent } from './user-actions-page/user-actions-page.component';
 import { CartComponent } from './cart/cart.component';
-import { ChangeNameComponent } from './change-name/change-name.component';
+import { ChangeLoginComponent } from './change-login/change-login.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ViewPurchasesComponent } from './view-purchases/view-purchases.component';
 import { ProductDataService } from './services/product-data.service';
@@ -61,7 +62,7 @@ import { ChangeProductComponent } from './change-product/change-product.componen
       { path: 'home/main-page', component: MainPageComponent },
       { path: 'signing/create-account', component: CreateAccountComponent },
       { path: 'signing/admin-page', component: AdminPageComponent },
-      { path: 'user-actions-page/change-name', component: ChangeNameComponent },
+      { path: 'user-actions-page/change-login', component: ChangeLoginComponent },
       { path: 'user-actions-page/change-password', component: ChangePasswordComponent },
       { path: 'user-actions-page/view-purchases', component: ViewPurchasesComponent },
       { path: 'home/main-page/detailed-info', component: DetailedInfoComponent },
@@ -82,7 +83,7 @@ import { ChangeProductComponent } from './change-product/change-product.componen
     MainPageComponent,
     CreateAccountComponent,
     AdminPageComponent,
-    ChangeNameComponent,
+    ChangeLoginComponent,
     ChangePasswordComponent,
     ViewPurchasesComponent,
     DetailedInfoComponent,

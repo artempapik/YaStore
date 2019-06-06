@@ -1,8 +1,9 @@
 <div>
   <button class="btn btn-info" routerLink="home">Logo</button>
   <button class="btn btn-dark" *ngIf="loggedIn; else notLogged" routerLink="{{navigate}}">{{userName}}</button>
-  <button *ngIf="loggedIn && !isAdmin" routerLink="cart">cart</button>
+  <button class="btn btn-dark" *ngIf="loggedIn && !isAdmin" routerLink="cart">cart</button>
 </div>
+
 <router-outlet></router-outlet>
 
 <ng-template #notLogged>
