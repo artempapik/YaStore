@@ -66,7 +66,9 @@ namespace YaStore.Controllers
 							   join product in db.Products on categoryProduct.ProductId equals product.Id
 							   select product;
 
-				return products.ToList();
+				return products
+					.ToList()
+					.Distinct();
 			}
 		}
 
