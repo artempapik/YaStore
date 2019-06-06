@@ -25,7 +25,7 @@ export class CreateAccountComponent implements OnInit {
 
   addUser() {
     if (this.user.password !== this.password) {
-      alert(`check if you repeat your new password right`);
+      alert(`check if you repeat password right`);
       return;
     }
 

@@ -19,4 +19,12 @@ export class ViewUsersComponent implements OnInit {
       .getUsers()
       .subscribe((data: User[]) => this.users = data);
   }
+
+  deleteUser(index: number, userId: number) {
+    this.users.splice(index, 1);
+
+    this.userDataService
+      .deleteUser(userId)
+      .subscribe();
+  }
 }

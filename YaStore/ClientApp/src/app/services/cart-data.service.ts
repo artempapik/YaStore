@@ -27,7 +27,6 @@ export class CartDataService {
   }
 
   deleteProduct(userId: number, productId: number) {
-    console.log(`${userId} ${productId}`);
     return this.http.delete(`${this.url}/${userId}/${productId}`);
   }
 

@@ -15,17 +15,15 @@ namespace YaStore.Controllers
 		{
 			using (var db = new ApplicationContext())
 			{
-				var purchases = db.Purchases.ToList();
-
-				for (int i = 0; i < purchases.Count; i++)
+				foreach (var purchase in db.Purchases.ToList())
 				{
-					if (purchases[i].UserId == userId)
+					if (purchase.UserId == userId)
 					{
-						if (purchases[i].Product == productId)
+						if (purchase.Product == productId)
 						{
-							db.Purchases.Remove(purchases[i]);
+							db.Purchases.Remove(purchase);
 							db.SaveChanges();
-							return Ok(purchases[i]);
+							return Ok(purchase);
 						}
 					}
 				}

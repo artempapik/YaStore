@@ -10,6 +10,24 @@ namespace YaStore.Controllers
 	{
 		public UsersController() { }
 
+		[HttpDelete("{id}")]
+		public IActionResult Delete(int id)
+		{
+			using (var db = new ApplicationContext())
+			{
+				foreach (var user in db.Users.ToList())
+				{
+					if (user.Id == id)
+					{
+						db.Users.Remove(user);
+						db.SaveChanges();
+						return Ok(user);
+					}
+				}
+			}
+			return default;
+		}
+
 		[HttpGet]
 		public IEnumerable<User> Get()
 		{

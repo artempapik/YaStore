@@ -21,10 +21,6 @@
 //bootstrap, angular material
 //angular validation
 
-//today
-//new category adding
-//delete products from cart && purchases
-
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
