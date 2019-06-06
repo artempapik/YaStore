@@ -9,7 +9,6 @@
 //why red classes in VS in TS
 
 //TODO
-//remove users for admin
 //change, delete category
 //some tricks with product availability
 //filter on main page

@@ -16,6 +16,6 @@
 </div>
 <div *ngFor="let category of categories">
   {{category.id}} {{category.name}}
-  <button><b>Change</b></button>
-  <button><b>Delete</b></button>
+  <button (click)="changeCategory(category.id)"><b>Change</b></button>
+  <button (click)="deleteCategory(category.id)"><b>Delete</b></button>
 </div>

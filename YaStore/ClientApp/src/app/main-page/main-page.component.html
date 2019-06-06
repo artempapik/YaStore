@@ -4,7 +4,7 @@
   </h1>
   <div *ngFor="let category of categories">
     <button>
-      {{category?.id}} {{category?.name}}
+      {{category.id}} {{category.name}}
     </button>
   </div>
 </div>
@@ -14,7 +14,7 @@
   </h1>
   <div *ngFor="let product of products">
     <button routerLink="detailed-info" (click)="viewProduct(product?.id)">
-      {{product?.id}} {{product?.name}}
+      {{product.id}} {{product.name}}
     </button>
   </div>
 </div>

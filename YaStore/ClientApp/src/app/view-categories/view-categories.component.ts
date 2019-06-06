@@ -51,4 +51,12 @@ export class ViewCategoriesComponent implements OnInit {
       .subscribe();
     alert(`added`);
   }
+
+  changeCategory(categoryId: number) {
+    alert(`changing... ${categoryId}`);
+  }
+
+  deleteCategory(categoryId: number) {
+    alert(`deleting... ${categoryId}`);
+  }
 }
