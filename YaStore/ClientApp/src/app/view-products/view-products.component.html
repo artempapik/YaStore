@@ -23,10 +23,11 @@
       <textarea class="form-control" [(ngModel)]="product.description"></textarea>
     </div>
 
-    <div>
-      Available?
-      <input type="radio" value="true" [(ngModel)]="product.availability" /> Yes
-      <input type="radio" value="false" [(ngModel)]="product.availability" /> No
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" [(ngModel)]="product.availability">
+      <label class="form-check-label">
+        Available
+      </label>
     </div>
 
     <div>

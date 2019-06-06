@@ -9,7 +9,6 @@
 //enums in TS
 
 //TODO
-//checkbox for availability
 //so, maybe, for deleting category & product i should use modern many-to-many relationship
 //filter on main page
 //statistics

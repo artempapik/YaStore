@@ -57,7 +57,10 @@ export class ViewProductsComponent implements OnInit {
   }
 
   addProduct() {
-  /* validation */
+    /* validation */
+    if (this.product.availability === undefined) {
+      this.product.availability = false;
+    }
 
     if (this.product.price === undefined) {
       alert(`enter price`);
