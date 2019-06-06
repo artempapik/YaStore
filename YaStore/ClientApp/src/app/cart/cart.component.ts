@@ -78,4 +78,17 @@ export class CartComponent implements OnInit {
       }
     }
   }
+
+  delete(index: number, productId: number) {
+    this.products.splice(index, 1);
+
+    for (let user of this.users) {
+      if (user.login === this.shareDataService.userName) {
+        this.cartDataService
+          .deleteProduct(user.id, productId)
+          .subscribe();
+        break;
+      }
+    }
+  }
 }

@@ -10,6 +10,29 @@ namespace YaStore.Controllers
 	{
 		public CartController() { }
 
+		[HttpDelete("{userId}/{productId}")]
+		public IActionResult Delete(int userId, int productId)
+		{
+			using (var db = new ApplicationContext())
+			{
+				var purchases = db.Purchases.ToList();
+
+				for (int i = 0; i < purchases.Count; i++)
+				{
+					if (purchases[i].UserId == userId)
+					{
+						if (purchases[i].Product == productId)
+						{
+							db.Purchases.Remove(purchases[i]);
+							db.SaveChanges();
+							return Ok();
+						}
+					}
+				}
+			}
+			return default;
+		}
+
 		[HttpGet("{userId}")]
 		public IEnumerable<Product> Get(int userId)
 		{

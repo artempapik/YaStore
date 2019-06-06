@@ -19,15 +19,16 @@ export class CartDataService {
     return this.http.post(this.url, user);
   }
 
-  deleteProduct(id: number) {
-    //return this.http.delete(`${this.url}/${id}`);
-  }
-
-  buyProduct(userId, productId: number) {
+  buyProduct(userId: number, productId: number) {
     let user: User = new User();
     user.id = userId;
     user.productId = productId;
     return this.http.put(this.url, user);
+  }
+
+  deleteProduct(userId: number, productId: number) {
+    console.log(`${userId} ${productId}`);
+    return this.http.delete(`${this.url}/${userId}/${productId}`);
   }
 
   viewPurchases(userId: number) {
