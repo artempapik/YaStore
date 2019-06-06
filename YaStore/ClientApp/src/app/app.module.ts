@@ -25,6 +25,7 @@
 //new category adding
 //delete products from cart && purchases
 //hello world
+//axaxa
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
