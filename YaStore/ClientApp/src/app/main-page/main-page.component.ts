@@ -13,6 +13,7 @@ import { Product } from '../services/product';
 export class MainPageComponent implements OnInit {
   categories: Category[];
   products: Product[];
+  productsExist: boolean;
 
   constructor(
     private categoryDataService: CategoryDataService,
@@ -28,11 +29,17 @@ export class MainPageComponent implements OnInit {
     if (this.shareDataService.showProductsFromCategory) {
       this.productDataService
         .getProductsWithCategoryId(this.shareDataService.categoryId)
-        .subscribe((data: Product[]) => this.products = data, _ => { });
+        .subscribe((data: Product[]) => {
+          this.productsExist = data.length > 0;
+          this.products = data;
+        }, _ => { });
     } else {
       this.productDataService
         .getProductsWithCategoryType(this.shareDataService.categoryType)
-        .subscribe((data: Product[]) => this.products = data, _ => { });
+        .subscribe((data: Product[]) => {
+          this.productsExist = data.length > 0;
+          this.products = data;
+        }, _ => { });
     }
   }
 

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="productsExist">
   <div class="row">
     <div class="col-2">
       <div *ngFor="let category of categories">
@@ -26,4 +26,7 @@
         </div>
     </div>
   </div>
+</div>
+<div class="text-center alert alert-secondary mt-200" *ngIf="!productsExist">
+  There is no products to show
 </div>
