@@ -1,20 +1,28 @@
-<div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Login</span>
-    </div>
-    <input class="form-control" [(ngModel)]="user.login" />
-  </div>
+<div class="container">
+  <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Login</span>
+            </div>
+            <input class="form-control" [(ngModel)]="user.login" />
+          </div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Password</span>
-    </div>
-    <input class="form-control" [(ngModel)]="user.password" />
-  </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Password</span>
+            </div>
+            <input class="form-control" type="password" [(ngModel)]="user.password" />
+          </div>
 
-  <div>
-    <button class="btn btn-link" routerLink="create-account">Create Account</button>
-    <button class="btn btn-primary" (click)="login()">Log in</button>
+          <div>
+            <button class="btn btn-link" routerLink="create-account">Create Account</button>
+            <button class="btn btn-primary float-right" (click)="login()">Log in</button>
+          </div>
+        </div>
+      </div>
+    <div class="col"></div>
   </div>
 </div>

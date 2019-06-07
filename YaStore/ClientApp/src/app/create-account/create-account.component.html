@@ -1,26 +1,34 @@
-<div>
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Login</span>
-    </div>
-    <input class="form-control" [(ngModel)]="user.login" />
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Login</span>
+          </div>
+          <input class="form-control" [(ngModel)]="user.login" />
+        </div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Password</span>
-    </div>
-    <input class="form-control" [(ngModel)]="user.password" />
-  </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Password</span>
+          </div>
+          <input class="form-control" type="password" [(ngModel)]="user.password" />
+        </div>
 
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Re-enter password</span>
-    </div>
-    <input class="form-control" [(ngModel)]="password" />
-  </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Re-enter pass</span>
+          </div>
+          <input class="form-control" type="password" [(ngModel)]="password" />
+        </div>
 
-  <div>
-    <button class="btn btn-primary" (click)="addUser()">Create Account</button>
+        <div class="text-center">
+          <button class="btn btn-primary" (click)="addUser()">Create Account</button>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
   </div>
 </div>

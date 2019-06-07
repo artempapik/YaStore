@@ -1,14 +1,22 @@
-<div>
-  <div>
-    <button class="btn btn-primary" routerLink="view-purchases">View purchases</button>
-  </div>
-  <div>
-    <button class="btn btn-warning" routerLink="change-login">Change login</button>
-  </div>
-  <div>
-    <button class="btn btn-warning" routerLink="change-password">Change password</button>
-  </div>
-  <div>
-    <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div>
+        <div class="text-center">
+          <button class="btn btn-outline-primary" routerLink="view-purchases">View purchases</button>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-outline-secondary" routerLink="change-login">Change login</button>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-outline-secondary" routerLink="change-password">Change password</button>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
   </div>
 </div>
