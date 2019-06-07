@@ -8,4 +8,6 @@ export class ShareDataService {
   categoryType: CategoryType;
   categoryId: number;
   productId: number;
+
+  showProductsFromCategory: boolean;
 }

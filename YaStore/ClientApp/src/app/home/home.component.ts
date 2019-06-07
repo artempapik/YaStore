@@ -23,12 +23,14 @@ export class HomeComponent implements OnInit {
       .subscribe((data: Category[]) => this.categories = data, _ => { });
   }
 
-  //productsFromCategory(type: CategoryType, id: number) {
-  //  this.shareDataService.categoryType = type;
-  //  this.shareDataService.categoryId = id;
-  //}
+  productsFromCategory(type: CategoryType, id: number) {
+    this.shareDataService.categoryType = type;
+    this.shareDataService.categoryId = id;
 
-  productsFromCategory(type: CategoryType) {
+    this.shareDataService.showProductsFromCategory = true;
+  }
+
+  productsFromCategoryType(type: CategoryType) {
     this.shareDataService.categoryType = type;
   }
 }

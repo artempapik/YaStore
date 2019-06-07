@@ -1,18 +1,30 @@
-<div>
-  {{product.name}} {{product.price}}
-</div>
-<div>
-  {{product?.description}}
-</div>
-<button [disabled]="clicked || !product.availability" (click)="addToCart(product.id)"
-        *ngIf="!shareDataService.isAdmin &&
+<div class="container mt-200">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div class="col mb-10">
+        <div class="card" style="width: 16rem;">
+          <!--<img src="..." class="card-img-top">-->
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}<span class="float-right">{{product.price}}</span></h5>
+            <p *ngIf="product?.description === null">No description</p>
+            <p class="card-text">{{product?.description}}</p>
+            <button class="btn btn-outline-primary text-center mb-10" [disabled]="clicked || !product.availability" (click)="addToCart(product.id)"
+                    *ngIf="!shareDataService.isAdmin &&
         shareDataService.userName !== undefined &&
         shareDataService.userName !== null">
-  Add to cart
-  <div *ngIf="product.availability" style="color: green;">
-    Available
+              Add to cart
+            </button>
+            <div *ngIf="product.availability" class="available bold">
+              Available
+            </div>
+            <div *ngIf="!product.availability" class="not-available bold">
+              Not available
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
   </div>
-  <div *ngIf="!product.availability" style="color: red;">
-    Not available
-  </div>
-</button>
+</div>

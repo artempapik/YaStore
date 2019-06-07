@@ -41,3 +41,11 @@
   color: #000;
   font-weight: normal;
 }
+
+.available {
+  color: green;
+}
+
+.not-available {
+  color: red;
+}

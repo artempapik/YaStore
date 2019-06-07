@@ -32,25 +32,6 @@ namespace YaStore.Controllers
 			return default;
 		}
 
-		//[HttpGet("{id}")]
-		//public IEnumerable<Product> Get(int id)
-		//{
-		//	using (var db = new ApplicationContext())
-		//	{
-		//		var categoryProducts = db.Categories
-		//			.Include(n => n.CategoryProducts)
-		//			.SelectMany(n => n.CategoryProducts);
-
-		//		var products = from category in db.Categories
-		//					 where category.Id == id
-		//					 join categoryProduct in categoryProducts on category.Id equals categoryProduct.CategoryId
-		//					 join product in db.Products on categoryProduct.ProductId equals product.Id
-		//					 select product;
-
-		//		return products.ToList();
-		//	}
-		//}
-
 		[HttpGet("{type}")]
 		public IEnumerable<Product> Get(int type)
 		{
@@ -71,6 +52,25 @@ namespace YaStore.Controllers
 					.ToList();
 			}
 		}
+
+		//[HttpGet("{id}")]
+		//public IEnumerable<Product> Get1(int id)
+		//{
+		//	using (var db = new ApplicationContext())
+		//	{
+		//		var categoryProducts = db.Categories
+		//			.Include(n => n.CategoryProducts)
+		//			.SelectMany(n => n.CategoryProducts);
+
+		//		var products = from category in db.Categories
+		//					   where category.Id == id
+		//					   join categoryProduct in categoryProducts on category.Id equals categoryProduct.CategoryId
+		//					   join product in db.Products on categoryProduct.ProductId equals product.Id
+		//					   select product;
+
+		//		return products.ToList();
+		//	}
+		//}
 
 		[HttpGet("{categoryId}/{productId}")]
 		public Product Get(int categoryId, int productId)

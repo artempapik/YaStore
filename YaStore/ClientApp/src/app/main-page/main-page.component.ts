@@ -25,13 +25,15 @@ export class MainPageComponent implements OnInit {
       .getCategoriesWithType(this.shareDataService.categoryType)
       .subscribe((data: Category[]) => this.categories = data, _ => { });
 
-    //this.productDataService
-    //  .getProductsWithCategoryId(this.shareDataService.categoryId)
-    //  .subscribe((data: Product[]) => this.products = data);
-
-    this.productDataService
-      .getProductsWithCategoryType(this.shareDataService.categoryType)
-      .subscribe((data: Product[]) => this.products = data, _ => { });
+    if (this.shareDataService.showProductsFromCategory) {
+      this.productDataService
+        .getProductsWithCategoryId(this.shareDataService.categoryId)
+        .subscribe((data: Product[]) => this.products = data, _ => { });
+    } else {
+      this.productDataService
+        .getProductsWithCategoryType(this.shareDataService.categoryType)
+        .subscribe((data: Product[]) => this.products = data, _ => { });
+    }
   }
 
   viewProduct(id: number) {

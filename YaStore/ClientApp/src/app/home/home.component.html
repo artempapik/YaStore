@@ -1,36 +1,36 @@
 <div class="container">
-  <div class="text-center">
+  <!--<div class="text-center">
     Carousel with products
-  </div>
+  </div>-->
   <div class="row">
     <div class="col">
       <div class="text-center mb-15">
-        <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategory(0)">
+        <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategoryType(0)">
           Music
         </button>
       </div>
       <div class="row">
         <div *ngFor="let category of categories">
           <div class="mb-15" *ngIf="category.type === 0">
-            <button class="btn btn-outline-primary ml-15">{{category.name}}</button>
+            <button class="btn btn-outline-primary ml-15" routerLink="main-page" (click)="productsFromCategory(0, category.id)">
+              {{category.name}}
+            </button>
           </div>
-          <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 0">
-    </button>-->
         </div>
       </div>
     </div>
     <div class="col">
       <div class="text-center mb-15">
-        <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategory(1)">
+        <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategoryType(1)">
           Videos
         </button>
       </div>
       <div class="row">
         <div *ngFor="let category of categories">
-          <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 1">
-    </button>-->
           <div class="mb-15" *ngIf="category.type === 1">
-            <button class="btn btn-outline-primary ml-15">{{category.name}}</button>
+            <button class="btn btn-outline-primary ml-15" routerLink="main-page" (click)="productsFromCategory(1, category.id)">
+              {{category.name}}
+            </button>
           </div>
         </div>
       </div>
