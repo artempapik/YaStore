@@ -1,14 +1,24 @@
-<div *ngFor="let product of products; let i = index">
-  <div>
-    {{product.id}} {{product.name}} {{product.price}}
-  </div>
-  <div>
-    {{product?.description}}
-  </div>
-  <div>
-    <button (click)="buy(i, product.id)">Buy</button>
-  </div>
-  <div>
-    <button (click)="delete(i, product.id)">Remove</button>
-  </div>
+<table *ngIf="purchasesExist" class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let product of products; let i = index">
+    <tr>
+      <th scope="row">{{i + 1}}</th>
+      <td>{{product.name}}</td>
+      <td>{{product.price}}</td>
+      <td>
+        <button class="btn btn-primary" (click)="buy(i, product.id)">Buy</button>
+        <button class="btn btn-danger" (click)="delete(i, product.id)">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="text-center alert alert-secondary" *ngIf="!purchasesExist">
+  Your cart is empty
 </div>

@@ -13,6 +13,7 @@ import { User } from '../services/user';
 export class ViewPurchasesComponent {
   products: Product[];
   users: User[];
+  purchasesExist: boolean;
 
   constructor(
     private userDataService: UserDataService,
@@ -31,7 +32,10 @@ export class ViewPurchasesComponent {
             if (user.login === this.shareDataService.userName) {
               this.cartDataService
                 .viewPurchases(user.id)
-                .subscribe((data: Product[]) => this.products = data);
+                .subscribe((data: Product[]) => {
+                  this.purchasesExist = data.length > 0;
+                  this.products = data;
+                });
             }
           }
         }
@@ -40,6 +44,7 @@ export class ViewPurchasesComponent {
 
   delete(index: number, productId: number) {
     this.products.splice(index, 1);
+    this.purchasesExist = this.products.length > 0;
 
     for (let user of this.users) {
       if (user.login === this.shareDataService.userName) {

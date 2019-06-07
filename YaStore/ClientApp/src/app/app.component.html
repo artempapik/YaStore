@@ -1,17 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <div>
+      <div class="mb-10">
         <button class="btn btn-outline-dark" routerLink="home">YaStore</button>
         <button class="btn btn-dark float-right" *ngIf="loggedIn && !isAdmin" routerLink="cart">cart</button>
-        <button class="btn btn-dark float-right" *ngIf="loggedIn; else notLogged" routerLink="{{navigate}}">{{userName}}</button>
+        <button class="btn btn-link float-right" *ngIf="loggedIn; else notLogged" routerLink="{{navigate}}">{{userName}}</button>
       </div>
-
-      <router-outlet></router-outlet>
 
       <ng-template #notLogged>
         <button class="btn btn-outline-primary float-right" routerLink="signing">Sign in</button>
       </ng-template>
+
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

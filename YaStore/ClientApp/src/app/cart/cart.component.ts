@@ -2,9 +2,9 @@ import { ShareDataService } from '../services/share-data.service';
 import { UserDataService } from '../services/user-data.service';
 import { CartDataService } from '../services/cart-data.service';
 import { Component, OnInit } from '@angular/core';
+import { Purchase } from '../services/purchase';
 import { Product } from '../services/product';
 import { User } from '../services/user';
-import { Purchase } from '../services/purchase';
 
 @Component({
   selector: 'cart',
@@ -14,6 +14,7 @@ import { Purchase } from '../services/purchase';
 export class CartComponent implements OnInit {
   products: Product[];
   users: User[];
+  purchasesExist: boolean;
 
   constructor(
     private shareDataService: ShareDataService,
@@ -57,6 +58,7 @@ export class CartComponent implements OnInit {
                           }
                           exists = false;
                         }
+                        this.purchasesExist = resultProducts.length > 0;
                         this.products = resultProducts;
                       });
                 });
@@ -68,6 +70,7 @@ export class CartComponent implements OnInit {
 
   buy(index: number, productId: number) {
     this.products.splice(index, 1);
+    this.purchasesExist = this.products.length > 0;
 
     for (let user of this.users) {
       if (user.login === this.shareDataService.userName) {
@@ -81,6 +84,7 @@ export class CartComponent implements OnInit {
 
   delete(index: number, productId: number) {
     this.products.splice(index, 1);
+    this.purchasesExist = this.products.length > 0;
 
     for (let user of this.users) {
       if (user.login === this.shareDataService.userName) {
