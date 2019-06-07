@@ -1,20 +1,30 @@
-<div class="float-left">
-  <h1>
-    Categories
-  </h1>
-  <div *ngFor="let category of categories">
-    <button>
-      {{category.id}} {{category.name}}
-    </button>
-  </div>
-</div>
-<div class="float-right">
-  <h1>
-    Products from Category
-  </h1>
-  <div *ngFor="let product of products">
-    <button routerLink="detailed-info" (click)="viewProduct(product.id)">
-      {{product.id}} {{product.name}}
-    </button>
+<div class="container">
+  <div class="row">
+    <div class="col-2">
+      <div *ngFor="let category of categories">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox">
+          <label class="form-check-label" for="defaultCheck1">
+            {{category.name}}
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+        <div class="row">
+          <div *ngFor="let product of products">
+            <div class="col">
+              <div class="card" style="width: 16rem;">
+                <!--<img src="..." class="card-img-top">-->
+                <div class="card-body">
+                  <h5 class="card-title">{{product.name}}</h5>
+                  <p class="card-text">{{product?.description}}</p>
+                  <button class="btn btn-primary" routerLink="detailed-info" (click)="viewProduct(product.id)">More</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
   </div>
 </div>

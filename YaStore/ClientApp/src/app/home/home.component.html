@@ -1,27 +1,40 @@
-<div class="text-center">
-  Carousel with products
-</div>
-<div class="float-left">
-  <button class="btn btn-dark" routerLink="main-page" (click)="productsFromCategory(0)">
-    Music
-  </button>
-  <div *ngFor="let category of categories">
-    <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 0">
-    </button>-->
-    <div *ngIf="category.type === 0">
-      {{category.id}} {{category.name}}
-    </div>
+<div class="container">
+  <div class="text-center">
+    Carousel with products
   </div>
-</div>
-<div class="float-right">
-  <button class="btn btn-dark" routerLink="main-page" (click)="productsFromCategory(1)">
-    Videos
-  </button>
-  <div *ngFor="let category of categories">
-    <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 1">
-    </button>-->
-    <div *ngIf="category.type === 1">
-      {{category.id}} {{category.name}}
+
+  <div class="row">
+    <div class="col">
+
+      <div class="text-center">
+        <button class="btn btn-dark" routerLink="main-page" (click)="productsFromCategory(0)">
+          Music
+        </button>
+      </div>
+
+      <div *ngFor="let category of categories">
+        <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 0">
+        </button>-->
+        <div *ngIf="category.type === 0">
+          {{category.name}}
+        </div>
+      </div>
+    </div>
+    <div class="col">
+
+      <div class="text-center">
+        <button class="btn btn-dark" routerLink="main-page" (click)="productsFromCategory(1)">
+          Videos
+        </button>
+      </div>
+
+      <div *ngFor="let category of categories">
+        <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 1">
+        </button>-->
+        <div *ngIf="category.type === 1">
+          {{category.name}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
