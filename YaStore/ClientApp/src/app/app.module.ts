@@ -14,9 +14,7 @@
 //statistics
 //carousel
 //store pictures in some way
-//bootstrap
 //angular validation
-//angular material
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
