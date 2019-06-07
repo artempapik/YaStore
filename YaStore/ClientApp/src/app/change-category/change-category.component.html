@@ -1,10 +1,15 @@
-<div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text">Name</span>
+<div class="container mt-200">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Name</span>
+        </div>
+        <input class="form-control" [(ngModel)]="category.name" />
+      </div>
+      <button class="btn btn-primary float-right" (click)="changeCategory()">Change</button>
+    </div>
+    <div class="col"></div>
   </div>
-  <input class="form-control" [(ngModel)]="category.name" />
-</div>
-
-<div>
-  <button class="btn btn-primary" (click)="changeCategory()">Change</button>
 </div>

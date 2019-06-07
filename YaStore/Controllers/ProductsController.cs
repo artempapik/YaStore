@@ -67,8 +67,8 @@ namespace YaStore.Controllers
 							   select product;
 
 				return products
-					.ToList()
-					.Distinct();
+					.Distinct()
+					.ToList();
 			}
 		}
 

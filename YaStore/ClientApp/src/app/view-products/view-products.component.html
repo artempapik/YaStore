@@ -1,53 +1,62 @@
-<button class="btn btn-secondary" (click)="showAddProduct()">Add Product</button>
-<div *ngIf="showAdd">
-  <div>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div *ngIf="showAdd">
+        <div>
 
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Price</span>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Price</span>
+            </div>
+            <input class="form-control" [(ngModel)]="product.price" />
+          </div>
+
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Name</span>
+            </div>
+            <input class="form-control" [(ngModel)]="product.name" />
+          </div>
+
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">Description</span>
+            </div>
+            <textarea class="form-control" [(ngModel)]="product.description"></textarea>
+          </div>
+
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="availability" [(ngModel)]="product.availability">
+            <label class="custom-control-label" for="availability">Available</label>
+          </div>
+
+          <div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="music" name="category" (click)="changeCategory(0)">
+              <label class="custom-control-label" for="music">Music</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" class="custom-control-input" id="video" name="category" (click)="changeCategory(1)">
+              <label class="custom-control-label" for="video">Video</label>
+            </div>
+          </div>
+
+          <select multiple [(ngModel)]="selectedCategories" (change)="categoriesSelected()">
+            <option *ngFor="let category of categories">{{category.name}}</option>
+          </select>
+
+          <div>
+            <button class="btn btn-primary" (click)="addProduct()">Add</button>
+          </div>
+        </div>
       </div>
-      <input class="form-control" [(ngModel)]="product.price" />
     </div>
-
-    <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Name</span>
-      </div>
-      <input class="form-control" [(ngModel)]="product.name" />
-    </div>
-
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Description</span>
-      </div>
-      <textarea class="form-control" [(ngModel)]="product.description"></textarea>
-    </div>
-
-    <div class="custom-control custom-checkbox">
-      <input type="checkbox" class="custom-control-input" id="availability" [(ngModel)]="product.availability">
-      <label class="custom-control-label" for="availability">Available</label>
-    </div>
-
-    <div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" class="custom-control-input" id="music" name="category" (click)="changeCategory(0)">
-        <label class="custom-control-label" for="music">Music</label>
-      </div>
-      <div class="custom-control custom-radio custom-control-inline">
-        <input type="radio" class="custom-control-input" id="video" name="category" (click)="changeCategory(1)">
-        <label class="custom-control-label" for="video">Video</label>
-      </div>
-    </div>
-
-    <select multiple [(ngModel)]="selectedCategories" (change)="categoriesSelected()">
-      <option *ngFor="let category of categories">{{category.name}}</option>
-    </select>
-
-    <div>
-      <button class="btn btn-primary" (click)="addProduct()">Add</button>
-    </div>
+    <div class="col"></div>
   </div>
 </div>
+
+<button class="btn btn-secondary" (click)="showAddProduct()">Add Product</button>
 
 <table *ngIf="productsExist" class="table table-striped">
   <thead>
@@ -64,7 +73,7 @@
       <td>{{product.price}}</td>
       <td>
         <button class="btn btn-primary" routerLink="change-product" (click)="changeProduct(product.id)">Change</button>
-        <button class="btn btn-danger" (click)="deleteProduct(product.id)">Remove</button>
+        <button class="btn btn-danger ml-15" (click)="deleteProduct(product.id)">Remove</button>
       </td>
     </tr>
   </tbody>

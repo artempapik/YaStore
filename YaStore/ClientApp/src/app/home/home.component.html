@@ -2,42 +2,48 @@
   <div class="text-center">
     Carousel with products
   </div>
-
   <div class="row">
     <div class="col">
-
-      <div class="text-center">
-        <button class="btn btn-dark" routerLink="main-page" (click)="productsFromCategory(0)">
+      <div class="text-center mb-15">
+        <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategory(0)">
           Music
         </button>
       </div>
-
-      <div *ngFor="let category of categories">
-        <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 0">
-        </button>-->
-        <div *ngIf="category.type === 0">
-
-          <div class="card bg-light mb-3" style="width: 5rem;">
-            <div class="text-center card-body">
-              <h5 class="card-title">{{category.name}}</h5>
+      <div class="row">
+        <div *ngFor="let category of categories">
+          <div class="col">
+            <div *ngIf="category.type === 0">
+              <div class="card bg-light" style="width: 7rem;">
+                <div class="text-center card-body category">
+                  <h5 class="card-title">{{category.name}}</h5>
+                </div>
+              </div>
             </div>
           </div>
+          <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 0">
+    </button>-->
         </div>
       </div>
     </div>
     <div class="col">
-
-      <div class="text-center">
-        <button class="btn btn-dark" routerLink="main-page" (click)="productsFromCategory(1)">
+      <div class="text-center mb-15">
+        <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategory(1)">
           Videos
         </button>
       </div>
-
-      <div *ngFor="let category of categories">
-        <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 1">
-        </button>-->
-        <div *ngIf="category.type === 1">
-          {{category.name}}
+      <div class="row">
+        <div *ngFor="let category of categories">
+          <!--<button routerLink="main-page" (click)="productsFromCategory(category.type, category.id)" *ngIf="category.type === 1">
+    </button>-->
+          <div class="col">
+            <div *ngIf="category.type === 1">
+              <div class="card bg-light" style="width: 7rem;">
+                <div class="text-center card-body category">
+                  <h5 class="card-title">{{category.name}}</h5>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

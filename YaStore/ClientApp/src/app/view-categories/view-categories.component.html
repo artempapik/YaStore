@@ -1,23 +1,32 @@
-<button class="btn btn-secondary" (click)="showAddCategory()">Add Category</button>
-<div *ngIf="showAdd">
-  <div class="input-group mb-3">
-    <div class="input-group-prepend">
-      <span class="input-group-text">Name</span>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div *ngIf="showAdd">
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Name</span>
+          </div>
+          <input class="form-control" [(ngModel)]="category.name" />
+        </div>
+        <div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="music" name="category" (click)="changeCategoryType(0)">
+            <label class="custom-control-label" for="music">Music</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="video" name="category" (click)="changeCategoryType(1)">
+            <label class="custom-control-label" for="video">Video</label>
+          </div>
+          <button class="btn btn-primary float-right" (click)="addCategory()">Add</button>
+        </div>
+      </div>
     </div>
-    <input class="form-control" [(ngModel)]="category.name" />
-  </div>
-
-  <div>
-    <label>Select Category Type</label>
-    <select class="form-control" [(ngModel)]="category.type">
-      <option value="Music">Music</option>
-      <option value="Video">Video</option>
-    </select>
-  </div>
-  <div>
-    <button class="btn btn-primary" (click)="addCategory()">Add</button>
+    <div class="col"></div>
   </div>
 </div>
+
+<button class="btn btn-secondary" (click)="showAddCategory()">Add Category</button>
 
 <table class="table table-striped">
   <thead>
@@ -32,7 +41,7 @@
       <td>{{category.name}}</td>
       <td>
         <button class="btn btn-primary" routerLink="change-category" (click)="changeCategory(category.id)">Change</button>
-        <button class="btn btn-danger" (click)="deleteCategory(category.id)">Delete</button>
+        <button class="btn btn-danger ml-15" (click)="deleteCategory(category.id)">Delete</button>
       </td>
     </tr>
   </tbody>

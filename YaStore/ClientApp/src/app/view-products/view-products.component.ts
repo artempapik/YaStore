@@ -40,8 +40,6 @@ export class ViewProductsComponent implements OnInit {
   }
 
   changeCategory(type: number) {
-    console.log(type);
-
     this.categoryDataService
       .getCategoriesWithType(type)
       .subscribe((data: Category[]) => this.categories = data);
@@ -110,11 +108,11 @@ export class ViewProductsComponent implements OnInit {
 
     this.productDataService
       .createProduct(this.product, ids)
-      .subscribe();
-
-    this.productDataService
-      .getProducts()
-      .subscribe((data: Product[]) => this.products = data);
+      .subscribe(_ => { }, _ => { }, () => {
+        this.productDataService
+          .getProducts()
+          .subscribe((data: Product[]) => this.products = data)
+      });
 
     alert(`added`);
   }

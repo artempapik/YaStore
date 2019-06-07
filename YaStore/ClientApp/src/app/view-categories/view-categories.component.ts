@@ -24,6 +24,10 @@ export class ViewCategoriesComponent implements OnInit {
       .subscribe((data: Category[]) => this.categories = data);
   }
 
+  changeCategoryType(type: number) {
+    this.category.type = type;
+  }
+
   showAddCategory() {
     this.showAdd = !this.showAdd;
   }
@@ -50,7 +54,12 @@ export class ViewCategoriesComponent implements OnInit {
 
     this.categoryDataService
       .createCategory(this.category)
-      .subscribe();
+      .subscribe(_ => { }, _ => { }, () => {
+        this.categoryDataService
+          .getCategories()
+          .subscribe((data: Category[]) => this.categories = data)
+      });
+
     alert(`added`);
   }
 
