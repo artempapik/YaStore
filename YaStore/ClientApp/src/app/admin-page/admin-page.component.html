@@ -1,17 +1,25 @@
-<div>
-  <div>
-    <button class="btn btn-primary" routerLink="view-categories">View Categories</button>
-  </div>
-  <div>
-    <button class="btn btn-primary" routerLink="view-products">View Products</button>
-  </div>
-  <div>
-    <button class="btn btn-primary" routerLink="view-users">View Users</button>
-  </div>
-  <div>
-    <button class="btn btn-warning" routerLink="statistics">Statistics</button>
-  </div>
-  <div>
-    <button class="btn btn-danger" (click)="signOut()">Sign Out</button>
+<div class="container">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col">
+      <div>
+        <div class="text-center mb-10">
+          <button class="btn btn-primary" routerLink="view-categories">Categories</button>
+        </div>
+        <div class="text-center mb-10">
+          <button class="btn btn-primary" routerLink="view-products">Products</button>
+        </div>
+        <div class="text-center mb-10">
+          <button class="btn btn-primary" routerLink="view-users">Users</button>
+        </div>
+        <div class="text-center mb-10">
+          <button class="btn btn-warning" routerLink="statistics">Statistics</button>
+        </div>
+        <div class="text-center">
+          <button class="btn btn-danger" (click)="signOut()">Sign out</button>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
   </div>
 </div>

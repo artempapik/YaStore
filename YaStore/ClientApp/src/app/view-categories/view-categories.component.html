@@ -26,8 +26,8 @@
       <th scope="col">Name</th>
     </tr>
   </thead>
-  <tbody *ngFor="let category of categories">
-    <tr>
+  <tbody>
+    <tr *ngFor="let category of categories">
       <th scope="row">{{category.id}}</th>
       <td>{{category.name}}</td>
       <td>

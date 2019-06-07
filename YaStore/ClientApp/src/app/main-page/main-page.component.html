@@ -2,22 +2,21 @@
   <div class="row">
     <div class="col-2">
       <div *ngFor="let category of categories">
-        <div class="form-check">
-          <input class="form-check-input" type="checkbox">
-          <label class="form-check-label" for="defaultCheck1">
-            {{category.name}}
-          </label>
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="{{category.name}}">
+          <label class="custom-control-label" for="{{category.name}}">{{category.name}}</label>
         </div>
       </div>
     </div>
     <div class="col">
         <div class="row">
           <div *ngFor="let product of products">
-            <div class="col">
+            <div class="col mb-10">
               <div class="card" style="width: 16rem;">
                 <!--<img src="..." class="card-img-top">-->
                 <div class="card-body">
                   <h5 class="card-title">{{product.name}}</h5>
+                  <p *ngIf="product?.description === null">No description</p>
                   <p class="card-text">{{product?.description}}</p>
                   <button class="btn btn-primary" routerLink="detailed-info" (click)="viewProduct(product.id)">More</button>
                 </div>

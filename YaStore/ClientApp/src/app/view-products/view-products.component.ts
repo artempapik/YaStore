@@ -1,9 +1,10 @@
 import { CategoryDataService } from '../services/category-data.service';
 import { ProductDataService } from '../services/product-data.service';
+import { ShareDataService } from '../services/share-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../services/category';
 import { Product } from '../services/product';
-import { ShareDataService } from '../services/share-data.service';
+
 
 @Component({
   selector: 'view-products',
@@ -13,11 +14,11 @@ import { ShareDataService } from '../services/share-data.service';
 export class ViewProductsComponent implements OnInit {
   products: Product[];
   product: Product = new Product();
-  type: CategoryType;
   categories: Category[];
   result: Category[];
   selectedCategories: string[];
   showAdd: boolean = false;
+  productsExist: boolean;
 
   constructor(
     private categoryDataService: CategoryDataService,
@@ -28,16 +29,21 @@ export class ViewProductsComponent implements OnInit {
   ngOnInit() {
     this.productDataService
       .getProducts()
-      .subscribe((data: Product[]) => this.products = data);
+      .subscribe((data: Product[]) => {
+        this.productsExist = data.length > 0;
+        this.products = data;
+      });
   }
 
   showAddProduct() {
     this.showAdd = !this.showAdd;
   }
 
-  changeCategory() {
+  changeCategory(type: number) {
+    console.log(type);
+
     this.categoryDataService
-      .getCategoriesWithType(this.type)
+      .getCategoriesWithType(type)
       .subscribe((data: Category[]) => this.categories = data);
   }
 
@@ -105,6 +111,11 @@ export class ViewProductsComponent implements OnInit {
     this.productDataService
       .createProduct(this.product, ids)
       .subscribe();
+
+    this.productDataService
+      .getProducts()
+      .subscribe((data: Product[]) => this.products = data);
+
     alert(`added`);
   }
 
@@ -112,7 +123,7 @@ export class ViewProductsComponent implements OnInit {
     this.shareDataService.productId = productId;
   }
 
-  deleteCategory(productId: number) {
+  deleteProduct(productId: number) {
     this.productDataService
       .deleteProduct(productId)
       .subscribe();
