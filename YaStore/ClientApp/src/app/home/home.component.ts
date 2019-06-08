@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
   productsFromCategory(type: CategoryType, id: number) {
     this.shareDataService.categoryType = type;
     this.shareDataService.categoryId = id;
-
     this.shareDataService.showProductsFromCategory = true;
   }
 

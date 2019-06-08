@@ -9,21 +9,18 @@
           </div>
           <input class="form-control" [(ngModel)]="user.login" />
         </div>
-
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Password</span>
           </div>
           <input class="form-control" type="password" [(ngModel)]="user.password" />
         </div>
-
         <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text">Re-enter pass</span>
           </div>
           <input class="form-control" type="password" [(ngModel)]="password" />
         </div>
-
         <div class="text-center">
           <button class="btn btn-primary" (click)="changeLogin()">Change Login</button>
         </div>

@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../services/user';
-import { UserDataService } from '../services/user-data.service';
 import { ShareDataService } from '../services/share-data.service';
+import { UserDataService } from '../services/user-data.service';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from '../services/user';
 
 @Component({
   selector: 'change-password',

@@ -10,9 +10,7 @@
             <p *ngIf="product?.description === null">No description</p>
             <p class="card-text">{{product?.description}}</p>
             <button class="btn btn-outline-primary text-center mb-10" [disabled]="clicked || !product.availability" (click)="addToCart(product.id)"
-                    *ngIf="!shareDataService.isAdmin &&
-        shareDataService.userName !== undefined &&
-        shareDataService.userName !== null">
+                    *ngIf="!shareDataService.isAdmin && shareDataService.userName !== undefined && shareDataService.userName !== null">
               Add to cart
             </button>
             <div *ngIf="product.availability" class="available bold">

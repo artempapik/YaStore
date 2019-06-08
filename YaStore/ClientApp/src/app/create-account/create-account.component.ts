@@ -42,7 +42,7 @@ export class CreateAccountComponent implements OnInit {
 
     this.userDataService
       .createUser(this.user)
-      .subscribe(_ => { });
+      .subscribe();
     this.router.navigate(['']);
   }
 }

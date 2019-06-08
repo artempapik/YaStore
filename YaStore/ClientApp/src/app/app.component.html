@@ -8,11 +8,9 @@
           {{userName}}<span class="admin" *ngIf="isAdmin"> - admin</span>
         </button>
       </div>
-
       <ng-template #notLogged>
         <button class="btn btn-primary float-right bold" routerLink="signing">Sign in</button>
       </ng-template>
-
       <router-outlet></router-outlet>
     </div>
   </div>

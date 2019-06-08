@@ -13,12 +13,13 @@ import { Product } from '../services/product';
 
 export class ViewProductsComponent implements OnInit {
   products: Product[];
-  product: Product = new Product();
   categories: Category[];
+  productsExist: boolean;
+  categoriesExist: boolean;
+  product: Product = new Product();
   result: Category[];
   selectedCategories: string[];
   showAdd: boolean = false;
-  productsExist: boolean;
 
   constructor(
     private categoryDataService: CategoryDataService,
@@ -42,7 +43,10 @@ export class ViewProductsComponent implements OnInit {
   changeCategory(type: number) {
     this.categoryDataService
       .getCategoriesWithType(type)
-      .subscribe((data: Category[]) => this.categories = data);
+      .subscribe((data: Category[]) => {
+        this.categoriesExist = data.length > 0;
+        this.categories = data;
+      });
   }
 
   categoriesSelected() {

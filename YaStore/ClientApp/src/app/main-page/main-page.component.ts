@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { CategoryDataService } from '../services/category-data.service';
-import { Category } from '../services/category';
-import { ShareDataService } from '../services/share-data.service';
 import { ProductDataService } from '../services/product-data.service';
+import { ShareDataService } from '../services/share-data.service';
+import { Component, OnInit } from '@angular/core';
+import { Category } from '../services/category';
 import { Product } from '../services/product';
 
 @Component({

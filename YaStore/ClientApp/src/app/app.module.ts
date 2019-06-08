@@ -1,13 +1,3 @@
-//TOCHANGE
-//select category when adding new category || product through *ngFor instead of hardcoding values
-
-//QUESTIONS
-//choose right life cycle to update homecomponent after adding new category
-//get different methods with the same signature
-//errors with 500 code while trying to perform get request (and 200 also)
-//why red classes in VS in TS
-//enums in TS
-
 //TODO
 //so, maybe, for deleting category & product i should use modern many-to-many relationship
 //filter on main page
@@ -15,6 +5,11 @@
 //carousel
 //store pictures in some way
 //angular validation
+
+//QUESTIONS
+//get different methods with the same signature
+//errors with 500 code while trying to perform get request (and 200 also)
+//why red classes in VS in TS
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
