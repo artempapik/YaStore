@@ -85,6 +85,17 @@ namespace YaStore.Controllers
 			}
 		}
 
+		[HttpGet("price/{from}/{to}")]
+		public IEnumerable<Product> GetProductsWithPrice(int from, int to)
+		{
+			using (var db = new ApplicationContext())
+			{
+				return db.Products
+					.Where(n => n.Price >= from && n.Price <= to)
+					.ToList();
+			}
+		}
+
 		[HttpGet]
 		public IEnumerable<Product> GetProducts()
 		{

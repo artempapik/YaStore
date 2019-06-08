@@ -15,6 +15,8 @@ export class MainPageComponent implements OnInit {
   categoriesChecked: boolean[] = [];
   products: Product[];
   productsExist: boolean;
+  fromPrice: number;
+  toPrice: number;
 
   constructor(
     private categoryDataService: CategoryDataService,
@@ -55,7 +57,11 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  updateProductPage(index: number) {
+  updateProductPage(index?: number) {
+    this.showProductsWithCategory(index);
+  }
+
+  showProductsWithCategory(index: number) {
     this.categoriesChecked[index] = !this.categoriesChecked[index];
 
     let somethingChecked: boolean;
@@ -69,8 +75,7 @@ export class MainPageComponent implements OnInit {
     if (!somethingChecked) {
       this.productDataService
         .getProductsWithCategoryType(this.shareDataService.categoryType)
-        .subscribe((data: Product[]) => this.products = data, _ => { });
-
+        .subscribe((data: Product[]) => this.products = data, _ => { }, () => this.showProductsWithPrice());
       return;
     }
 
@@ -80,9 +85,25 @@ export class MainPageComponent implements OnInit {
       if (this.categoriesChecked[i]) {
         this.productDataService
           .getProductsWithCategoryId(this.categories[i].id)
-          .subscribe((data: Product[]) => this.products.push(...data), _ => { });
+          .subscribe((data: Product[]) => this.products.push(...data), _ => { }, () => this.showProductsWithPrice());
       }
     }
+  }
+
+  showProductsWithPrice() {
+    if (this.fromPrice === undefined || this.toPrice === undefined) {
+      return;
+    }
+
+    let res: Product[] = [];
+
+    for (let i: number = 0; i < this.products.length; i++) {
+      if (this.products[i].price >= this.fromPrice && this.products[i].price <= this.toPrice) {
+        res.push(this.products[i]);
+      }
+    }
+
+    this.products = res;
   }
 
   viewProduct(id: number) {

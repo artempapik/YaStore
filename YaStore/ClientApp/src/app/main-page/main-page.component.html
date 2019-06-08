@@ -1,11 +1,22 @@
 <div class="container" *ngIf="productsExist">
   <div class="row">
     <div class="col-2">
-      <div *ngFor="let category of categories; let i = index">
+      <div class="size-16 bold mb-10">
+        Categories
+      </div>
+      <div class="mb-10" *ngFor="let category of categories; let i = index">
         <div class="custom-control custom-checkbox">
           <input (click)="updateProductPage(i)" type="checkbox" [checked]="categoriesChecked[i]" class="custom-control-input" id="{{category.name}}">
           <label class="custom-control-label" for="{{category.name}}">{{category.name}}</label>
         </div>
+      </div>
+      <div class="size-16 bold mb-10">
+        Price
+      </div>
+      <div class="input-group mb-3">
+        <input class="form-control size-12" placeholder="from" [(ngModel)]="fromPrice" />
+        <input class="form-control size-12" placeholder="to" [(ngModel)]="toPrice" />
+        <button class="btn btn-primary ml-10 size-12" (click)="updateProductPage()">OK</button>
       </div>
     </div>
     <div class="col">

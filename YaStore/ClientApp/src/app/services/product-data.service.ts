@@ -16,6 +16,10 @@ export class ProductDataService {
     return this.http.get(`${this.url}/categoryId/${id}`);
   }
 
+  //getProductsWithPrice(from: number, to: number) {
+  //  return this.http.get(`${this.url}/price/${from}/${to}`);
+  //}
+
   getProductsWithCategoryType(type: CategoryType) {
     return this.http.get(`${this.url}/type/${type}`);
   }
