@@ -1,9 +1,9 @@
 <div class="container" *ngIf="productsExist">
   <div class="row">
     <div class="col-2">
-      <div *ngFor="let category of categories">
+      <div *ngFor="let category of categories; let i = index">
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="{{category.name}}">
+          <input (click)="updateProductPage(i)" type="checkbox" [checked]="categoriesChecked[i]" class="custom-control-input" id="{{category.name}}">
           <label class="custom-control-label" for="{{category.name}}">{{category.name}}</label>
         </div>
       </div>

@@ -12,6 +12,7 @@ import { Product } from '../services/product';
 
 export class MainPageComponent implements OnInit {
   categories: Category[];
+  categoriesChecked: boolean[] = [];
   products: Product[];
   productsExist: boolean;
 
@@ -24,7 +25,18 @@ export class MainPageComponent implements OnInit {
   ngOnInit() {
     this.categoryDataService
       .getCategoriesWithType(this.shareDataService.categoryType)
-      .subscribe((data: Category[]) => this.categories = data, _ => { });
+      .subscribe((data: Category[]) => {
+        this.categoriesChecked.length = data.length;
+        this.categories = data;
+      }, _ => { }, () => {
+          if (this.shareDataService.showProductsFromCategory) {
+            for (let i: number = 0; i < this.categories.length; i++) {
+              if (this.categories[i].id == this.shareDataService.categoryId) {
+                this.categoriesChecked[i] = true;
+              }
+            }
+          }
+      });
 
     if (this.shareDataService.showProductsFromCategory) {
       this.productDataService
@@ -40,6 +52,36 @@ export class MainPageComponent implements OnInit {
           this.productsExist = data.length > 0;
           this.products = data;
         }, _ => { });
+    }
+  }
+
+  updateProductPage(index: number) {
+    this.categoriesChecked[index] = !this.categoriesChecked[index];
+
+    let somethingChecked: boolean;
+
+    for (let categoryChecked of this.categoriesChecked) {
+      if (categoryChecked) {
+        somethingChecked = true;
+      }
+    }
+
+    if (!somethingChecked) {
+      this.productDataService
+        .getProductsWithCategoryType(this.shareDataService.categoryType)
+        .subscribe((data: Product[]) => this.products = data, _ => { });
+
+      return;
+    }
+
+    this.products = [];
+
+    for (let i: number = 0; i < this.categoriesChecked.length; i++) {
+      if (this.categoriesChecked[i]) {
+        this.productDataService
+          .getProductsWithCategoryId(this.categories[i].id)
+          .subscribe((data: Product[]) => this.products.push(...data), _ => { });
+      }
     }
   }
 
