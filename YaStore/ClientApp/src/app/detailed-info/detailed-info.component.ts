@@ -34,7 +34,7 @@ export class DetailedInfoComponent implements OnInit {
 
   ngOnInit() {
     this.productDataService
-      .getProductWithId(0, this.shareDataService.productId)
+      .getProductWithId(this.shareDataService.productId)
       .subscribe((data: Product) => this.product = data);
 
     this.userDataService

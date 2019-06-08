@@ -13,15 +13,15 @@ export class ProductDataService {
   }
 
   getProductsWithCategoryId(id: number) {
-    return this.http.get(`${this.url}/${id}`);
+    return this.http.get(`${this.url}/categoryId/${id}`);
   }
 
   getProductsWithCategoryType(type: CategoryType) {
-    return this.http.get(`${this.url}/${type}`);
+    return this.http.get(`${this.url}/type/${type}`);
   }
 
-  getProductWithId(categoryId: number, productId: number) {
-    return this.http.get(`${this.url}/${categoryId}/${productId}`);
+  getProductWithId(id: number) {
+    return this.http.get(`${this.url}/productId/${id}`);
   }
 
   createProduct(product: Product, ids: number[]) {

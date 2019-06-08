@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.shareDataService.showProductsFromCategory = false;
     this.categoryDataService
       .getCategories()
       .subscribe((data: Category[]) => this.categories = data, _ => { });

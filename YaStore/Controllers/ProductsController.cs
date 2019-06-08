@@ -32,8 +32,8 @@ namespace YaStore.Controllers
 			return default;
 		}
 
-		[HttpGet("{type}")]
-		public IEnumerable<Product> Get(int type)
+		[HttpGet("type/{type}")]
+		public IEnumerable<Product> GetProductsWithType(CategoryType type)
 		{
 			using (var db = new ApplicationContext())
 			{
@@ -42,7 +42,7 @@ namespace YaStore.Controllers
 					.SelectMany(n => n.CategoryProducts);
 
 				var products = from category in db.Categories
-							   where (int)category.Type == type
+							   where category.Type == type
 							   join categoryProduct in categoryProducts on category.Id equals categoryProduct.CategoryId
 							   join product in db.Products on categoryProduct.ProductId equals product.Id
 							   select product;
@@ -53,36 +53,36 @@ namespace YaStore.Controllers
 			}
 		}
 
-		//[HttpGet("{id}")]
-		//public IEnumerable<Product> Get1(int id)
-		//{
-		//	using (var db = new ApplicationContext())
-		//	{
-		//		var categoryProducts = db.Categories
-		//			.Include(n => n.CategoryProducts)
-		//			.SelectMany(n => n.CategoryProducts);
-
-		//		var products = from category in db.Categories
-		//					   where category.Id == id
-		//					   join categoryProduct in categoryProducts on category.Id equals categoryProduct.CategoryId
-		//					   join product in db.Products on categoryProduct.ProductId equals product.Id
-		//					   select product;
-
-		//		return products.ToList();
-		//	}
-		//}
-
-		[HttpGet("{categoryId}/{productId}")]
-		public Product Get(int categoryId, int productId)
+		[HttpGet("categoryId/{id}")]
+		public IEnumerable<Product> GetProductsWithId(int id)
 		{
 			using (var db = new ApplicationContext())
 			{
-				return db.Products.FirstOrDefault(n => n.Id == productId);
+				var categoryProducts = db.Categories
+					.Include(n => n.CategoryProducts)
+					.SelectMany(n => n.CategoryProducts);
+
+				var products = from category in db.Categories
+							   where category.Id == id
+							   join categoryProduct in categoryProducts on category.Id equals categoryProduct.CategoryId
+							   join product in db.Products on categoryProduct.ProductId equals product.Id
+							   select product;
+
+				return products.ToList();
+			}
+		}
+
+		[HttpGet("productId/{id}")]
+		public Product GetProductWithId(int id)
+		{
+			using (var db = new ApplicationContext())
+			{
+				return db.Products.FirstOrDefault(n => n.Id == id);
 			}
 		}
 
 		[HttpGet]
-		public IEnumerable<Product> Get()
+		public IEnumerable<Product> GetProducts()
 		{
 			using (var db = new ApplicationContext())
 			{

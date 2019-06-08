@@ -37,9 +37,8 @@ namespace YaStore
 			app
 				.UseHttpsRedirection()
 				.UseStaticFiles()
+				.UseMvcWithDefaultRoute()
 				.UseSpaStaticFiles();
-
-			app.UseMvcWithDefaultRoute();
 
 			app.UseSpa(spa =>
 			{
