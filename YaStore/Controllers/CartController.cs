@@ -10,25 +10,23 @@ namespace YaStore.Controllers
 	{
 		public CartController() { }
 
-		[HttpDelete("{userId}/{productId}")]
-		public IActionResult Delete(int userId, int productId)
+		[HttpPost]
+		public IActionResult Post([FromBody]User user)
 		{
+			int userId = user.Id;
+			int productId = user.ProductId;
+
 			using (var db = new ApplicationContext())
 			{
-				foreach (var purchase in db.Purchases.ToList())
+				user = db.Users.FirstOrDefault(n => n.Id == userId);
+				user.Purchases.Add(new Purchase
 				{
-					if (purchase.UserId == userId)
-					{
-						if (purchase.Product == productId)
-						{
-							db.Purchases.Remove(purchase);
-							db.SaveChanges();
-							return Ok(purchase);
-						}
-					}
-				}
+					Product = productId
+				});
+				db.SaveChanges();
 			}
-			return default;
+
+			return Ok(user);
 		}
 
 		[HttpGet("{userId}")]
@@ -113,34 +111,24 @@ namespace YaStore.Controllers
 			}
 		}
 
-		[HttpPost]
-		public IActionResult Post([FromBody]User user)
+		[HttpDelete("{userId}/{productId}")]
+		public IActionResult Delete(int userId, int productId)
 		{
-			int userId = user.Id;
-			int productId = user.ProductId;
-
 			using (var db = new ApplicationContext())
 			{
-				user = db.Users.FirstOrDefault(n => n.Id == userId);
-				user.Purchases.Add(new Purchase
+				foreach (var purchase in db.Purchases.ToList())
 				{
-					Product = productId
-				});
-				db.SaveChanges();
+					if (purchase.UserId == userId)
+					{
+						if (purchase.Product == productId)
+						{
+							db.Purchases.Remove(purchase);
+							db.SaveChanges();
+							return Ok(purchase);
+						}
+					}
+				}
 			}
-
-			return Ok(user);
-		}
-
-		[HttpPut("{id}")]
-		public IActionResult Put(int id, [FromBody]Category category)
-		{
-			return default;
-		}
-
-		[HttpDelete("{id}")]
-		public IActionResult Delete(int id)
-		{
 			return default;
 		}
 	}

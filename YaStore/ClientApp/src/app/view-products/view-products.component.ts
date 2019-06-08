@@ -125,7 +125,9 @@ export class ViewProductsComponent implements OnInit {
     this.shareDataService.productId = productId;
   }
 
-  deleteProduct(productId: number) {
+  deleteProduct(index: number, productId: number) {
+    this.products.splice(index, 1);
+
     this.productDataService
       .deleteProduct(productId)
       .subscribe();

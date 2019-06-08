@@ -10,33 +10,6 @@ namespace YaStore.Controllers
 	{
 		public UsersController() { }
 
-		[HttpDelete("{id}")]
-		public IActionResult Delete(int id)
-		{
-			using (var db = new ApplicationContext())
-			{
-				foreach (var user in db.Users.ToList())
-				{
-					if (user.Id == id)
-					{
-						db.Users.Remove(user);
-						db.SaveChanges();
-						return Ok(user);
-					}
-				}
-			}
-			return default;
-		}
-
-		[HttpGet]
-		public IEnumerable<User> Get()
-		{
-			using (var db = new ApplicationContext())
-			{
-				return db.Users.ToList();
-			}
-		}
-
 		[HttpPost]
 		public IActionResult Post([FromBody]User user)
 		{
@@ -53,6 +26,15 @@ namespace YaStore.Controllers
 			}
 		}
 
+		[HttpGet]
+		public IEnumerable<User> Get()
+		{
+			using (var db = new ApplicationContext())
+			{
+				return db.Users.ToList();
+			}
+		}
+
 		[HttpPut]
 		public IActionResult Put([FromBody]User user)
 		{
@@ -64,6 +46,24 @@ namespace YaStore.Controllers
 					{
 						u.Login = user.Login;
 						u.Password = user.Password;
+						db.SaveChanges();
+						return Ok(user);
+					}
+				}
+			}
+			return default;
+		}
+
+		[HttpDelete("{id}")]
+		public IActionResult Delete(int id)
+		{
+			using (var db = new ApplicationContext())
+			{
+				foreach (var user in db.Users.ToList())
+				{
+					if (user.Id == id)
+					{
+						db.Users.Remove(user);
 						db.SaveChanges();
 						return Ok(user);
 					}

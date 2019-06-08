@@ -60,13 +60,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
+    <tr *ngFor="let product of products; let i = index">
       <th scope="row">{{product.id}}</th>
       <td>{{product.name}}</td>
       <td>{{product.price}}</td>
       <td>
         <button class="btn btn-primary" routerLink="change-product" (click)="changeProduct(product.id)">Change</button>
-        <button class="btn btn-danger ml-15" (click)="deleteProduct(product.id)">Remove</button>
+        <button class="btn btn-danger ml-15" (click)="deleteProduct(i, product.id)">Remove</button>
       </td>
     </tr>
   </tbody>

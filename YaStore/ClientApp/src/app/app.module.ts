@@ -1,15 +1,10 @@
 //TODO
-//so, maybe, for deleting category & product i should use modern many-to-many relationship
+//category deleting
 //filter on main page
 //statistics
 //carousel
 //store pictures in some way
 //angular validation
-
-//QUESTIONS
-//get different methods with the same signature
-//errors with 500 code while trying to perform get request (and 200 also)
-//why red classes in VS in TS
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

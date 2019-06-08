@@ -11,25 +11,29 @@ namespace YaStore.Controllers
 	{
 		public ProductsController() { }
 
-		[HttpPut]
-		public IActionResult Put([FromBody]Product product)
+		[HttpPost]
+		public IActionResult Post([FromBody]Product product)
 		{
 			using (var db = new ApplicationContext())
 			{
-				foreach (var p in db.Products.ToList())
+				db.Products.Add(product);
+				db.SaveChanges();
+				var categories = db.Categories.ToList();
+
+				for (int i = 0; i < product.Ids.Length; i++)
 				{
-					if (p.Id == product.Id)
+					int id = product.Ids[i];
+					Category category = categories.FirstOrDefault(n => n.Id == id);
+					category.CategoryProducts.Add(new CategoryProduct
 					{
-						p.Price = product.Price;
-						p.Name = product.Name;
-						p.Description = product.Description;
-						p.Availability = product.Availability;
-						db.SaveChanges();
-						return Ok(product);
-					}
+						CategoryId = id,
+						ProductId = product.Id
+					});
 				}
+
+				db.SaveChanges();
+				return Ok(product);
 			}
-			return default;
 		}
 
 		[HttpGet("type/{type}")]
@@ -90,35 +94,57 @@ namespace YaStore.Controllers
 			}
 		}
 
-		[HttpPost]
-		public IActionResult Post([FromBody]Product product)
+		[HttpPut]
+		public IActionResult Put([FromBody]Product product)
 		{
 			using (var db = new ApplicationContext())
 			{
-				db.Products.Add(product);
-				db.SaveChanges();
-				var categories = db.Categories.ToList();
-
-				for (int i = 0; i < product.Ids.Length; i++)
+				foreach (var p in db.Products.ToList())
 				{
-					int id = product.Ids[i];
-					Category category = categories.FirstOrDefault(n => n.Id == id);
-					category.CategoryProducts.Add(new CategoryProduct
+					if (p.Id == product.Id)
 					{
-						CategoryId = id,
-						ProductId = product.Id
-					});
+						p.Price = product.Price;
+						p.Name = product.Name;
+						p.Description = product.Description;
+						p.Availability = product.Availability;
+						db.SaveChanges();
+						return Ok(product);
+					}
 				}
-
-				db.SaveChanges();
-				return Ok(product);
 			}
+			return default;
 		}
 
 		[HttpDelete("{id}")]
 		public IActionResult Delete(int id)
 		{
-			return default;
+			using (var db = new ApplicationContext())
+			{
+				foreach (var product in db.Products.ToList())
+				{
+					if (product.Id == id)
+					{
+						db.Products.Remove(product);
+						db.SaveChanges();
+						break;
+					}
+				}
+
+				foreach (var category in db.Categories.ToList())
+				{
+					foreach (var categoryProduct in category.CategoryProducts)
+					{
+						if (categoryProduct.ProductId == id)
+						{
+							category.CategoryProducts.Remove(categoryProduct);
+							db.SaveChanges();
+							break;
+						}
+					}
+				}
+
+				return Ok(id);
+			}
 		}
 	}
 }

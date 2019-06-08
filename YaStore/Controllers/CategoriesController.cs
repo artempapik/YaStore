@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using YaStore.Models;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
 namespace YaStore.Controllers
 {
@@ -11,8 +11,19 @@ namespace YaStore.Controllers
 	{
 		public CategoriesController() { }
 
+		[HttpPost]
+		public IActionResult Post([FromBody]Category category)
+		{
+			using (var db = new ApplicationContext())
+			{
+				db.Categories.Add(category);
+				db.SaveChanges();
+				return Ok(category);
+			}
+		}
+
 		[HttpGet("{type}")]
-		public IEnumerable<Category> Get(CategoryType type)
+		public IEnumerable<Category> GetCategoriesWithType(CategoryType type)
 		{
 			using (var db = new ApplicationContext())
 			{
@@ -23,22 +34,11 @@ namespace YaStore.Controllers
 		}
 
 		[HttpGet]
-		public IEnumerable<Category> Get()
+		public IEnumerable<Category> GetCategories()
 		{
 			using (var db = new ApplicationContext())
 			{
 				return db.Categories.ToList();
-			}
-		}
-
-		[HttpPost]
-		public IActionResult Post([FromBody]Category category)
-		{
-			using (var db = new ApplicationContext())
-			{
-				db.Categories.Add(category);
-				db.SaveChanges();
-				return Ok(category);
 			}
 		}
 
