@@ -63,27 +63,36 @@ namespace YaStore.Controllers
 		[HttpDelete("{id}")]
 		public IActionResult Delete(int id)
 		{
-			//here i should delete both category and products that depend on it
-			//BUT if product has more than 1 category, I shouldn't delete it
-
 			using (var db = new ApplicationContext())
 			{
+				foreach (var category in db.Categories.ToList())
+				{
+					if (category.Id == id)
+					{
+						db.Categories.Remove(category);
+						db.SaveChanges();
+						break;
+					}
+				}
+
+				foreach (var category in db.Categories.ToList())
+				{
+					foreach (var categoryProduct in category.CategoryProducts)
+					{
+						if (categoryProduct.CategoryId == id)
+						{
+							category.CategoryProducts.Remove(categoryProduct);
+							db.SaveChanges();
+							break;
+						}
+					}
+				}
+
 				var categoryProducts = db.Categories
 					.Include(n => n.CategoryProducts)
 					.SelectMany(n => n.CategoryProducts);
 
-				//var categories = db.Categories
-				//	.Where(n => n.Id == id);
-
-				//foreach (var category in categories)
-				//{
-				//	var n = category.CategoryProducts.Count;
-				//}
-
-				//should i work with 'categoryProduct' list? maybe
-
-				var productsWhichShouldNotBeDeleted = new List<Product>();
-				int counter = 0;
+				bool needDelete = true;
 
 				foreach (var product in db.Products.ToList())
 				{
@@ -91,42 +100,20 @@ namespace YaStore.Controllers
 					{
 						if (product.Id == categoryProduct.ProductId)
 						{
-							counter++;
+							needDelete = false;
+							break;
 						}
 					}
 
-					if (counter > 1)
+					if (needDelete)
 					{
-						productsWhichShouldNotBeDeleted.Add(product);
+						db.Products.Remove(product);
 					}
 
-					counter = 0;
+					needDelete = true;
 				}
 
-				//то есть я не должен удалять эти продукты из дибисета продуктов
-				//но должен подчистить инфу в таблице CategoryProduct
-
-				var categoryProductsToDelete = from category in db.Categories
-							   where category.Id == id
-							   join categoryProduct in categoryProducts on category.Id equals categoryProduct.CategoryId
-							   select categoryProduct;
-							   //join product in db.Products on categoryProduct.ProductId equals product.Id
-							   //select product;
-
-				foreach (var n in categoryProductsToDelete)
-				{
-					//something like these...
-					//categoryProducts.ToList().Remove(n);
-				}
-
-				//foreach (var product in products)
-				//{
-				//	//db.Products.Remove(product);
-				//	//db.SaveChanges();
-				//}
-
-				//return Ok(products);
-				return default;
+				return Ok(id);
 			}
 		}
 	}

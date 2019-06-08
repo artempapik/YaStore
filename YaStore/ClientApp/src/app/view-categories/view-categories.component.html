@@ -34,12 +34,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let category of categories">
+    <tr *ngFor="let category of categories; let i = index">
       <th scope="row">{{category.id}}</th>
       <td>{{category.name}}</td>
       <td>
         <button class="btn btn-primary" routerLink="change-category" (click)="changeCategory(category.id)">Change</button>
-        <button class="btn btn-danger ml-15" (click)="deleteCategory(category.id)">Delete</button>
+        <button class="btn btn-danger ml-15" (click)="deleteCategory(i, category.id)">Delete</button>
       </td>
     </tr>
   </tbody>

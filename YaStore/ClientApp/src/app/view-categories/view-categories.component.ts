@@ -67,7 +67,9 @@ export class ViewCategoriesComponent implements OnInit {
     this.shareDataService.categoryId = categoryId;
   }
 
-  deleteCategory(categoryId: number) {
+  deleteCategory(index: number, categoryId: number) {
+    this.categories.splice(index, 1);
+
     this.categoryDataService
       .deleteCategory(categoryId)
       .subscribe();
