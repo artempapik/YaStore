@@ -12,6 +12,7 @@ export class ViewCategoriesComponent implements OnInit {
   categories: Category[];
   category: Category = new Category();
   showAdd: boolean = false;
+  categoriesExist: boolean;
 
   constructor(
     private categoryDataService: CategoryDataService,
@@ -21,7 +22,10 @@ export class ViewCategoriesComponent implements OnInit {
   ngOnInit() {
     this.categoryDataService
       .getCategories()
-      .subscribe((data: Category[]) => this.categories = data);
+      .subscribe((data: Category[]) => {
+        this.categoriesExist = data.length > 0;
+        this.categories = data;
+      });
   }
 
   changeCategoryType(type: number) {
@@ -52,13 +56,12 @@ export class ViewCategoriesComponent implements OnInit {
     }
   /* */
 
+    this.categoriesExist = true;
+    this.categories.push(this.category);
+
     this.categoryDataService
       .createCategory(this.category)
-      .subscribe(_ => { }, _ => { }, () => {
-        this.categoryDataService
-          .getCategories()
-          .subscribe((data: Category[]) => this.categories = data)
-      });
+      .subscribe();
 
     alert(`added`);
   }
@@ -69,6 +72,7 @@ export class ViewCategoriesComponent implements OnInit {
 
   deleteCategory(index: number, categoryId: number) {
     this.categories.splice(index, 1);
+    this.categoriesExist = this.categories.length > 0;
 
     this.categoryDataService
       .deleteCategory(categoryId)

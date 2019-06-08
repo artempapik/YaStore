@@ -110,13 +110,12 @@ export class ViewProductsComponent implements OnInit {
       ids.push(i.id);
     }
 
+    this.productsExist = true;
+    this.products.push(this.product);
+
     this.productDataService
       .createProduct(this.product, ids)
-      .subscribe(_ => { }, _ => { }, () => {
-        this.productDataService
-          .getProducts()
-          .subscribe((data: Product[]) => this.products = data)
-      });
+      .subscribe();
 
     alert(`added`);
   }
@@ -127,6 +126,7 @@ export class ViewProductsComponent implements OnInit {
 
   deleteProduct(index: number, productId: number) {
     this.products.splice(index, 1);
+    this.productsExist = this.products.length > 0;
 
     this.productDataService
       .deleteProduct(productId)

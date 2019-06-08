@@ -90,27 +90,39 @@ namespace YaStore.Controllers
 
 				var categoryProducts = db.Categories
 					.Include(n => n.CategoryProducts)
-					.SelectMany(n => n.CategoryProducts);
+					.SelectMany(n => n.CategoryProducts)
+					.ToList();
 
-				bool needDelete = true;
-
-				foreach (var product in db.Products.ToList())
+				if (categoryProducts.Count == 0)
 				{
-					foreach (var categoryProduct in categoryProducts.ToList())
-					{
-						if (product.Id == categoryProduct.ProductId)
-						{
-							needDelete = false;
-							break;
-						}
-					}
-
-					if (needDelete)
+					foreach (var product in db.Products.ToList())
 					{
 						db.Products.Remove(product);
+						db.SaveChanges();
 					}
+				}
+				else
+				{
+					bool needDelete = true;
 
-					needDelete = true;
+					foreach (var product in db.Products.ToList())
+					{
+						foreach (var categoryProduct in categoryProducts)
+						{
+							if (product.Id == categoryProduct.ProductId)
+							{
+								needDelete = false;
+								break;
+							}
+						}
+
+						if (needDelete)
+						{
+							db.Products.Remove(product);
+						}
+
+						needDelete = true;
+					}
 				}
 
 				return Ok(id);
