@@ -1,6 +1,4 @@
 //TODO
-//category deleting
-//filter on main page
 //statistics
 //carousel
 //store pictures in some way

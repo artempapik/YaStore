@@ -15,6 +15,8 @@ export class MainPageComponent implements OnInit {
   categoriesChecked: boolean[] = [];
   products: Product[];
   productsExist: boolean;
+  isMusic: boolean;
+  isVideo: boolean;
   fromPrice: number;
   toPrice: number;
 
@@ -25,6 +27,10 @@ export class MainPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.shareDataService.categoryType === 0 ?
+      this.isMusic = true :
+      this.isVideo = true;
+
     this.categoryDataService
       .getCategoriesWithType(this.shareDataService.categoryType)
       .subscribe((data: Category[]) => {
@@ -57,13 +63,20 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  updateProductPage(index?: number) {
-    this.showProductsWithCategory(index);
+  checkMusic() {
+    this.isMusic = !this.isMusic;
+    this.updateProductPage();
   }
 
-  showProductsWithCategory(index: number) {
+  checkVideo() {
+    this.isVideo = !this.isVideo;
+    this.updateProductPage();
+  }
+
+  updateProductPage(index?: number) {
     this.categoriesChecked[index] = !this.categoriesChecked[index];
 
+    let type: CategoryType = this.isMusic ? 0 : 1;
     let somethingChecked: boolean;
 
     for (let categoryChecked of this.categoriesChecked) {
@@ -72,21 +85,48 @@ export class MainPageComponent implements OnInit {
       }
     }
 
-    if (!somethingChecked) {
-      this.productDataService
-        .getProductsWithCategoryType(this.shareDataService.categoryType)
-        .subscribe((data: Product[]) => this.products = data, _ => { }, () => this.showProductsWithPrice());
-      return;
-    }
+    if ((this.isMusic && this.isVideo) || (!this.isMusic && !this.isVideo)) {
+      this.categoryDataService
+        .getCategories()
+        .subscribe((data: Category[]) => this.categories = data, _ => { }, () => {
+          if (somethingChecked) {
+            this.products = [];
 
-    this.products = [];
+            for (let i: number = 0; i < this.categoriesChecked.length; i++) {
+              if (this.categoriesChecked[i]) {
+                this.productDataService
+                  .getProductsWithCategoryId(this.categories[i].id)
+                  .subscribe((data: Product[]) => this.products.push(...data), _ => { }, () => this.showProductsWithPrice());
+              }
+            }
+          } else {
+            this.productDataService
+              .getProducts()
+              .subscribe((data: Product[]) => this.products = data, _ => { }, () => this.showProductsWithPrice());
+          }
+        });
+    } else {
+      this.categoryDataService
+        .getCategoriesWithType(type)
+        .subscribe((data: Category[]) => this.categories = data, _ => { }, () => {
+          if (somethingChecked) {
+            this.products = [];
 
-    for (let i: number = 0; i < this.categoriesChecked.length; i++) {
-      if (this.categoriesChecked[i]) {
-        this.productDataService
-          .getProductsWithCategoryId(this.categories[i].id)
-          .subscribe((data: Product[]) => this.products.push(...data), _ => { }, () => this.showProductsWithPrice());
-      }
+            for (let i: number = 0; i < this.categoriesChecked.length; i++) {
+              if (this.categories[i] !== undefined) {
+                if (this.categoriesChecked[i] && this.categories[i].type === type) {
+                  this.productDataService
+                    .getProductsWithCategoryId(this.categories[i].id)
+                    .subscribe((data: Product[]) => this.products.push(...data), _ => { }, () => this.showProductsWithPrice());
+                }
+              }
+            }
+          } else {
+            this.productDataService
+              .getProductsWithCategoryType(type)
+              .subscribe((data: Product[]) => this.products = data, _ => { }, () => this.showProductsWithPrice());
+          }
+        });
     }
   }
 

@@ -2,12 +2,25 @@
   <div class="row">
     <div class="col-2">
       <div class="size-16 bold mb-10">
+        Category type
+      </div>
+      <div class="custom-control custom-checkbox">
+        <input (click)="checkMusic()" type="checkbox" [checked]="isMusic" class="custom-control-input" id="music">
+        <label class="custom-control-label" for="music">Music</label>
+      </div>
+      <div class="custom-control custom-checkbox mb-10">
+        <input (click)="checkVideo()" type="checkbox" [checked]="isVideo" class="custom-control-input" id="video">
+        <label class="custom-control-label" for="video">Video</label>
+      </div>
+      <div class="size-16 bold mb-10">
         Categories
       </div>
-      <div class="mb-10" *ngFor="let category of categories; let i = index">
-        <div class="custom-control custom-checkbox">
-          <input (click)="updateProductPage(i)" type="checkbox" [checked]="categoriesChecked[i]" class="custom-control-input" id="{{category.name}}">
-          <label class="custom-control-label" for="{{category.name}}">{{category.name}}</label>
+      <div class="mb-10">
+        <div *ngFor="let category of categories; let i = index">
+          <div class="custom-control custom-checkbox">
+            <input (click)="updateProductPage(i)" type="checkbox" [checked]="categoriesChecked[i]" class="custom-control-input" id="{{category.name}}">
+            <label class="custom-control-label" for="{{category.name}}">{{category.name}}</label>
+          </div>
         </div>
       </div>
       <div class="size-16 bold mb-10">
