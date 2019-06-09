@@ -119,6 +119,7 @@ namespace YaStore.Controllers
 						if (needDelete)
 						{
 							db.Products.Remove(product);
+							db.SaveChanges();
 						}
 
 						needDelete = true;
