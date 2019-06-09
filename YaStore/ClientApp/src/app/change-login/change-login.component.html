@@ -53,7 +53,9 @@
           <input class="form-control" #repeatPass="ngModel" type="password" [(ngModel)]="password" required minlength="4" />
         </div>
         <div class="text-center">
-          <button class="btn btn-primary" [disabled]="login.invalid || pass.invalid || repeatPass.invalid" (click)="changeLogin()">Change Login</button>
+          <button class="btn btn-primary" [disabled]="login.invalid || pass.invalid || repeatPass.invalid" (click)="changeLogin()">
+            Change Login
+          </button>
         </div>
       </div>
     </div>

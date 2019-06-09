@@ -1,6 +1,5 @@
 import { UserDataService } from '../services/user-data.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from '../services/user';
 
 @Component({
@@ -17,8 +16,7 @@ export class CreateAccountComponent implements OnInit {
   succesfullyCreated: boolean;
 
   constructor(
-    private userDataService: UserDataService,
-    private router: Router
+    private userDataService: UserDataService
   ) { }
 
   ngOnInit() {
@@ -50,5 +48,6 @@ export class CreateAccountComponent implements OnInit {
       .createUser(this.user)
       .subscribe();
     this.succesfullyCreated = true;
+
   }
 }

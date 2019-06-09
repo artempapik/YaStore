@@ -1,7 +1,6 @@
 import { ShareDataService } from '../services/share-data.service';
 import { UserDataService } from '../services/user-data.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { User } from '../services/user';
 
 @Component({
@@ -14,11 +13,14 @@ export class ChangePasswordComponent implements OnInit {
   newPassword: string;
   user: User = new User();
   users: User[];
+  notRepeatRight: boolean;
+  theSamePassword: boolean;
+  incorrectOld: boolean;
+  succesfullyChanged: boolean;
 
   constructor(
     private userDataService: UserDataService,
-    private shareDataService: ShareDataService,
-    private router: Router
+    private shareDataService: ShareDataService
   ) { }
 
   ngOnInit() {
@@ -28,23 +30,23 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   changePassword() {
-    if (this.user.password !== this.newPassword) {
-      alert(`check if you repeat your new password right`);
+    this.notRepeatRight = this.user.password !== this.newPassword;
+
+    if (this.notRepeatRight) {
       return;
     }
 
-    if (this.oldPassword === this.newPassword ||
-        this.oldPassword === this.user.password) {
-      alert(`your new password the same as old`);
-      return;
-    }
+    this.theSamePassword =
+      this.oldPassword === this.newPassword ||
+      this.oldPassword === this.user.password;
 
     this.user.login = this.shareDataService.userName;
 
     for (let user of this.users) {
       if (user.login === this.user.login) {
-        if (user.password !== this.oldPassword) {
-          alert(`incorrect old password`);
+        this.incorrectOld = user.password !== this.oldPassword;
+
+        if (this.incorrectOld) {
           return;
         }
 
@@ -53,8 +55,7 @@ export class ChangePasswordComponent implements OnInit {
           .updateUser(this.user)
           .subscribe();
 
-        alert(`succesfully changed`);
-        this.router.navigate(['']);
+        this.succesfullyChanged = true;
       }
     }
   }
