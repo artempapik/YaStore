@@ -12,6 +12,7 @@ import { User } from '../services/user';
 export class SigningComponent implements OnInit {
   user: User = new User();
   users: User[];
+  notMatch: boolean;
 
   constructor(
     private dataService: UserDataService,
@@ -25,12 +26,7 @@ export class SigningComponent implements OnInit {
       .subscribe((data: User[]) => this.users = data, _ => { });
   }
 
-  login() {
-    if (this.users === undefined) {
-      alert(`you can't login`);
-      return;
-    }
-
+  signIn() {
     for (let user of this.users) {
       if (this.user.login === user.login && this.user.password === user.password) {
         this.user.role = user.role;
@@ -45,6 +41,6 @@ export class SigningComponent implements OnInit {
       }
     }
 
-    alert(`you can't login`);
+    this.notMatch = true;
   }
 }

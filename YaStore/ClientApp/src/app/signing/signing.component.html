@@ -1,26 +1,45 @@
 <div class="container mt-200">
   <div class="row">
-      <div class="col"></div>
-      <div class="col">
-        <div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Login</span>
-            </div>
-            <input class="form-control" [(ngModel)]="user.login" />
+    <div class="col"></div>
+    <div class="col">
+      <div>
+        <div class="alert alert-danger" *ngIf="notMatch">
+          Login or password doesn't match
+        </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Login</span>
           </div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Password</span>
-            </div>
-            <input class="form-control" type="password" [(ngModel)]="user.password" />
+          <input class="form-control" #login="ngModel" [(ngModel)]="user.login" required minlength="3" />
+        </div>
+        <div *ngIf="login.invalid && (login.dirty || login.touched)" class="alert alert-danger">
+          <div *ngIf="login.errors.required">
+            enter login
           </div>
-          <div>
-            <button class="btn btn-link" routerLink="create-account">Create Account</button>
-            <button class="btn btn-primary float-right" (click)="login()">Log in</button>
+          <div *ngIf="login.errors.minlength">
+            at least 3 symbols
           </div>
         </div>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Password</span>
+          </div>
+          <input class="form-control" #password="ngModel" type="password" [(ngModel)]="user.password" required minlength="4" />
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+          <div *ngIf="password.errors.required">
+            enter password
+          </div>
+          <div *ngIf="password.errors.minlength">
+            at least 4 symbols
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-link" routerLink="create-account">Create Account</button>
+          <button class="btn btn-primary float-right" [disabled]="login.invalid || password.invalid" (click)="signIn()">Log in</button>
+        </div>
       </div>
+    </div>
     <div class="col"></div>
   </div>
 </div>
