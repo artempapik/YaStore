@@ -40,6 +40,10 @@ export class ChangePasswordComponent implements OnInit {
       this.oldPassword === this.newPassword ||
       this.oldPassword === this.user.password;
 
+    if (this.theSamePassword) {
+      return;
+    }
+
     this.user.login = this.shareDataService.userName;
 
     for (let user of this.users) {
