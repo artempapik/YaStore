@@ -1,8 +1,7 @@
+import { ShareDataService } from '../services/share-data.service';
+import { UserDataService } from '../services/user-data.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../services/user';
-import { UserDataService } from '../services/user-data.service';
-import { ShareDataService } from '../services/share-data.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'change-login',
@@ -13,11 +12,15 @@ export class ChangeLoginComponent implements OnInit {
   password: string;
   user: User = new User();
   users: User[];
+  notRepeatRight: boolean;
+  theSameName: boolean;
+  succesfullyChanged: boolean;
+  userExists: boolean;
+  notMatch: boolean;
 
   constructor(
     private userDataService: UserDataService,
-    private shareDataService: ShareDataService,
-    private router: Router
+    private shareDataService: ShareDataService
   ) { }
 
   ngOnInit() {
@@ -27,27 +30,22 @@ export class ChangeLoginComponent implements OnInit {
   }
 
   changeLogin() {
-    if (this.user.login === this.shareDataService.userName) {
-      alert(`your new name the same as old`);
-      return;
-    }
-
-    if (this.user.password !== this.password) {
-      alert(`check if you repeat your password right`);
-      return;
-    }
+    this.theSameName = this.user.login === this.shareDataService.userName;
+    this.notRepeatRight = this.user.password !== this.password;
 
     for (let user of this.users) {
-      if (user.login === this.user.login) {
-        alert(`user with this name already exists`);
+      this.userExists = user.login === this.user.login;
+
+      if (this.userExists) {
         return;
       }
     }
 
     for (let user of this.users) {
       if (user.login === this.shareDataService.userName) {
-        if (this.user.password !== user.password) {
-          alert(`password doesn't match`);
+        this.notMatch = this.user.password !== user.password;
+
+        if (this.notRepeatRight) {
           return;
         }
 
@@ -55,10 +53,9 @@ export class ChangeLoginComponent implements OnInit {
         this.userDataService
           .updateUser(this.user)
           .subscribe();
-
-        alert(`succesfully changed`);
+      
+        this.succesfullyChanged = true;
         this.shareDataService.userName = this.user.login;
-        this.router.navigate(['']);
       }
     }
   }

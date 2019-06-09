@@ -14,10 +14,12 @@ export class CreateAccountComponent implements OnInit {
   password: string;
   userExists: boolean;
   notRepeatRight: boolean;
+  succesfullyCreated: boolean;
 
   constructor(
     private userDataService: UserDataService,
-    private router: Router) { }
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.userDataService
@@ -47,6 +49,6 @@ export class CreateAccountComponent implements OnInit {
     this.userDataService
       .createUser(this.user)
       .subscribe();
-    this.router.navigate(['']);
+    this.succesfullyCreated = true;
   }
 }
