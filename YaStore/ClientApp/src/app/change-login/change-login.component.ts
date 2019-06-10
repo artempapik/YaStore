@@ -31,7 +31,16 @@ export class ChangeLoginComponent implements OnInit {
 
   changeLogin() {
     this.theSameName = this.user.login === this.shareDataService.userName;
+
+    if (this.theSameName) {
+      return;
+    }
+
     this.notRepeatRight = this.user.password !== this.password;
+
+    if (this.notRepeatRight) {
+      return;
+    }
 
     for (let user of this.users) {
       this.userExists = user.login === this.user.login;
@@ -45,7 +54,7 @@ export class ChangeLoginComponent implements OnInit {
       if (user.login === this.shareDataService.userName) {
         this.notMatch = this.user.password !== user.password;
 
-        if (this.notRepeatRight) {
+        if (this.notMatch) {
           return;
         }
 
