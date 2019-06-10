@@ -19,8 +19,12 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="wwwroot\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="wwwroot\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
@@ -83,10 +87,6 @@
     <TypeScriptCompile Include="ClientApp\src\app\user-actions-page\user-actions-page.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\view-purchases\view-purchases.component.ts" />
     <TypeScriptCompile Include="ClientApp\src\app\view-users\view-users.component.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
