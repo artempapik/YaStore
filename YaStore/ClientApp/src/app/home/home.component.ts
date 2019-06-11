@@ -11,6 +11,7 @@ import { Category } from '../services/category';
 export class HomeComponent implements OnInit {
   category: Category = new Category();
   categories: Category[];
+  categoriesExist: boolean;
 
   constructor(
     private categoryDataService: CategoryDataService,
@@ -21,7 +22,10 @@ export class HomeComponent implements OnInit {
     this.shareDataService.showProductsFromCategory = false;
     this.categoryDataService
       .getCategories()
-      .subscribe((data: Category[]) => this.categories = data, _ => { });
+      .subscribe((data: Category[]) => {
+        this.categoriesExist = data.length > 0;
+        this.categories = data;
+      }, _ => { });
   }
 
   productsFromCategory(type: CategoryType, id: number) {

@@ -3,7 +3,7 @@
     Carousel with products
   </div>-->
   <div class="row">
-    <div class="col">
+    <div class="col" *ngIf="categoriesExist">
       <div class="text-center mb-15">
         <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategoryType(0)">
           Music
@@ -19,7 +19,7 @@
         </div>
       </div>
     </div>
-    <div class="col">
+    <div class="col" *ngIf="categoriesExist">
       <div class="text-center mb-15">
         <button class="btn btn-dark category-type" routerLink="main-page" (click)="productsFromCategoryType(1)">
           Videos
