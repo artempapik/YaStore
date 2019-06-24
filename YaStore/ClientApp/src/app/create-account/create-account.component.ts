@@ -1,6 +1,7 @@
 import { UserDataService } from '../services/user-data.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from '../services/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'create-account',
@@ -13,10 +14,10 @@ export class CreateAccountComponent implements OnInit {
   password: string;
   userExists: boolean;
   notRepeatRight: boolean;
-  succesfullyCreated: boolean;
 
   constructor(
-    private userDataService: UserDataService
+    private userDataService: UserDataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -47,7 +48,6 @@ export class CreateAccountComponent implements OnInit {
     this.userDataService
       .createUser(this.user)
       .subscribe();
-    this.succesfullyCreated = true;
-
+    this.router.navigate(['signing']);
   }
 }
