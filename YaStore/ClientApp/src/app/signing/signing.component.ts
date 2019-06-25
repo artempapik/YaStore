@@ -1,6 +1,6 @@
 import { ShareDataService } from '../services/share-data.service';
 import { UserDataService } from '../services/user-data.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../services/user';
 
