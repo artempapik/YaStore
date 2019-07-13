@@ -1,8 +1,10 @@
-//TODO
-//statistics
-//carousel
-//store pictures in some way
-//angular validation
+/*
++ statistics
++ carousel
++ store pictures in some way
++- angular validation
+* bugs (product adding)
+*/
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';

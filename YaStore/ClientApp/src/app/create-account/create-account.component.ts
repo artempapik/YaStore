@@ -12,7 +12,6 @@ export class CreateAccountComponent implements OnInit {
   user: User = new User();
   users: User[];
   password: string;
-  userExists: boolean;
   notRepeatRight: boolean;
 
   constructor(
@@ -27,22 +26,20 @@ export class CreateAccountComponent implements OnInit {
   }
 
   addUser() {
-    this.notRepeatRight = this.user.password !== this.password;
+    if (this.user.password !== this.password) {
+      alert(`repeat your password right`);
+      return;
+    }
 
     if (this.users !== undefined) {
       if (this.users.length > 0) {
         for (let user of this.users) {
           if (this.user.login === user.login) {
-            this.userExists = true;
+            alert(`user with this login already exists`);
             return;
           }
         }
-        this.userExists = false;
       }
-    }
-
-    if (this.notRepeatRight) {
-      return;
     }
 
     this.userDataService

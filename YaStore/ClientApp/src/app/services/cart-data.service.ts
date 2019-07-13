@@ -31,10 +31,10 @@ export class CartDataService {
   }
 
   viewPurchases(userId: number) {
-    return this.http.get(`${this.url}/${userId}/${1}`);
+    return this.http.get(`${this.url}/boughtpurchases/${userId}`);
   }
 
   getPurchases(userId: number) {
-    return this.http.get(`${this.url}/${userId}/${1}/${2}`);
+    return this.http.get(`${this.url}/allpurchases/${userId}`);
   }
 }

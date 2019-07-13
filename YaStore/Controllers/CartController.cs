@@ -55,8 +55,8 @@ namespace YaStore.Controllers
 			}
 		}
 
-		[HttpGet("{userId}/{smth}")]
-		public IEnumerable<Product> Get(int userId, int smth)
+		[HttpGet("boughtpurchases/{userId}")]
+		public IEnumerable<Product> GetBoughtPurchases(int userId)
 		{
 			using (var db = new ApplicationContext())
 			{
@@ -81,8 +81,8 @@ namespace YaStore.Controllers
 			}
 		}
 
-		[HttpGet("{userId}/{smth}/{smth1}")]
-		public IEnumerable<Purchase> Get(int userId, int smth, int smth1)
+		[HttpGet("allpurchases/{userId}")]
+		public IEnumerable<Purchase> GetAllPurchases(int userId)
 		{
 			using (var db = new ApplicationContext())
 			{

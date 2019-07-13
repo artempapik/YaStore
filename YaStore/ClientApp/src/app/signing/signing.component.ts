@@ -12,7 +12,6 @@ import { User } from '../services/user';
 export class SigningComponent implements OnInit {
   user: User = new User();
   users: User[];
-  notMatch: boolean;
 
   constructor(
     private dataService: UserDataService,
@@ -41,6 +40,6 @@ export class SigningComponent implements OnInit {
       }
     }
 
-    this.notMatch = true;
+    alert(`login or password doesn't match`);
   }
 }
