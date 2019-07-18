@@ -3,7 +3,7 @@ using System;
 
 namespace Tasks
 {
-	class Program
+	static class Program
 	{
 		static void Main()
 		{
@@ -11,6 +11,35 @@ namespace Tasks
 			//AnimalsTest();
 			//TreeTest();
 			//UniqueTest();
+		}
+
+		static T[] MergeAionys<T>(this T[] arr1, T[] arr2)
+		{
+			var result = new List<T>();
+			T[] smallerArr = arr1.Length > arr2.Length ? arr2 : arr1;
+			T[] biggerArr = smallerArr == arr1 ? arr2 : arr1;
+
+			for (int i = 0; i < smallerArr.Length; i++)
+			{
+				result.Add(arr1[i]);
+				result.Add(arr2[i]);
+			}
+
+			for (int i = smallerArr.Length; i < biggerArr.Length; i++)
+			{
+				result.Add(biggerArr[i]);
+			}
+
+			return result.ToArray();
+		}
+
+		public static void Print<T>(this IEnumerable<T> sequence)
+		{
+			foreach (var n in sequence)
+			{
+				Console.Write($"{n} ");
+			}
+			Console.WriteLine();
 		}
 
 		static int MultiplyingRecursive()
