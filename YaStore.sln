@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "YaStore", "YaStore\YaStore.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tasks", "Tasks\Tasks.csproj", "{4A682AAC-1B1E-4BD3-903E-3983932FD7F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EntityTest", "EntityTest\EntityTest.csproj", "{F4A20289-4A8F-480E-B059-3F89119E2075}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityTest", "EntityTest\EntityTest.csproj", "{F4A20289-4A8F-480E-B059-3F89119E2075}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
