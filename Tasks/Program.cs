@@ -13,7 +13,7 @@ namespace Tasks
 			//UniqueTest();
 		}
 
-		static T[] MergeAionys<T>(this T[] arr1, T[] arr2)
+		private static T[] MergeAionys<T>(this T[] arr1, T[] arr2)
 		{
 			var result = new List<T>();
 			T[] smallerArr = arr1.Length > arr2.Length ? arr2 : arr1;
@@ -42,7 +42,7 @@ namespace Tasks
 			Console.WriteLine();
 		}
 
-		static int MultiplyingRecursive()
+		private static int MultiplyingRecursive()
 		{
 			int result = 1;
 			Main();
@@ -152,7 +152,7 @@ namespace Tasks
 			}
 		}
 
-		static void TreeTest()
+		private static void TreeTest()
 		{
 			var root = new Node(0);
 			Tree.Fill(root);
@@ -162,25 +162,25 @@ namespace Tasks
 			Console.WriteLine(result.CurrentDepth);
 		}
 
-		static void UniqueTest()
+		private static void UniqueTest()
 		{
-			const int SIZE = 100500;
+			const int size = 100500;
 			var random = new Random();
 
 			DateTime before;
 			DateTime after;
 			TimeSpan elapsedTime;
 
-			var first = new int[SIZE];
-			var second = new int[SIZE];
+			var first = new int[size];
+			var second = new int[size];
 
-			for (int i = 0; i < SIZE; i++)
+			for (int i = 0; i < size; i++)
 			{
 				first[i] = random.Next(0, 10000);
 				second[i] = random.Next(int.MinValue, int.MaxValue);
 			}
 
-			Console.WriteLine($"size = {SIZE}\n");
+			Console.WriteLine($"size = {size}\n");
 
 			void Simple()
 			{
