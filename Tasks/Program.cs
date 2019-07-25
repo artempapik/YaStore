@@ -79,7 +79,7 @@ namespace Tasks
 			public override string ToString() => $"{Name}; {Hands} hands, {Legs} legs, {Color} color";
 		}
 
-		static void AnimalsTest()
+		private static void AnimalsTest()
 		{
 			var animals = new List<Animal>();
 			int choice;
